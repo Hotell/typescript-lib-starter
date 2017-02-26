@@ -1,15 +1,22 @@
+# Typescript lib starter
+
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 
-# Typescript lib starter
 
 > based on https://github.com/elboman/typescript-lib-example and http://marcobotto.com/compiling-and-bundling-typescript-libraries-with-webpack/
 
-- proper package.json file references to build
+- proper package.json file references for build
 - compiles esm-lib to vanilla es2015 instead just es2015 modules
 - compiles types to `typings` folder instead of multiple distribution
 - umd is shiped under `umd` folder instead of `_bundles`
 
 ## Consumption of published library:
+
+library is shiped in 3 formats:
+
+- raw es2015 module and code format ( ideal for tree shaking with Webpack 2 )
+- CommonJS format for bundler consumption
+- UMD format for usage withou bundler
 
 ### Webpack
 
@@ -65,3 +72,15 @@ render(App, mountPoint);
   </body>
 </html>
 ```
+
+## Release
+
+`yarn release`
+
+## Format and fix lint errors
+
+`yarn ts:style:fix`
+
+## Commit ( via commitizen )
+
+`yarn commit`

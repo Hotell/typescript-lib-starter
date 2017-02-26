@@ -1,4 +1,4 @@
-const {resolve} = require('path');
+const { resolve } = require('path');
 const webpack = require('webpack');
 
 const PATHS = {
@@ -46,10 +46,13 @@ const config = (env) => {
       // NB: Remember to activate sourceMaps in UglifyJsPlugin
       // since they are disabled by default!
       new webpack.optimize.UglifyJsPlugin({
-        minimize: true,
         sourceMap: true,
         include: /\.min\.js$/,
-      })
+      }),
+
+      new webpack.LoaderOptionsPlugin({
+        minimize: true
+      }),
     ],
     module: {
       // Webpack doesn't understand TypeScript files and a loader is needed.
@@ -79,6 +82,6 @@ module.exports = config;
 
 // helpers
 
-function camelCaseToDash( myStr ) {
-    return myStr.replace( /([a-z])([A-Z])/g, '$1-$2' ).toLowerCase();
+function camelCaseToDash(myStr) {
+  return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }

@@ -1,20 +1,11 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "target": "es5",
-    "lib": [ "es2015", "dom" ],
-    "outDir": "lib",
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
     "declaration": true,
-    "jsx": "react"
+    "declarationDir": "typings"
   },
-  "files": [
-    "./src/index.ts"
-  ],
-  "compileOnSave": false,
-  "buildOnSave": false
+  // @TODO remove this when https://github.com/vvakame/typescript-formatter/issues/77 is fixed
+  "include": [
+    "./src"
+  ]
 }

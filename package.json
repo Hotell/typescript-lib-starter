@@ -1,19 +1,59 @@
 {
-  "name": "typescript-lib-example",
+  "name": "typescript-lib-starter",
   "version": "1.0.0",
-  "description": "Example of TypeScript library setup for multiple compilation targets using tsc and webpack",
-  "main": "index.js",
-  "repository": "https://www.github.com/elboman/typescript-lib-example",
-  "author": "Marco Botto",
+  "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
+  "main": "lib/index",
+  "module": "lib-esm/index",
+  "jsnext:main": "lib-esm/index",
+  "typings": "typings/index.d.ts",
+  "repository": "https://www.github.com/Hotell/typescript-lib-starter",
+  "author": "Martin Hochel",
   "license": "MIT",
-  "scripts": {
-    "clean": "shx rm -rf _bundles lib lib-esm",
-    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack"
+  "engines": {
+    "node": ">=6.9"
   },
-  "dependencies": {
-    "awesome-typescript-loader": "^3.0.4-rc.2",
-    "shx": "^0.2.2",
-    "typescript": "^2.1.6",
-    "webpack": "^2.2.1"
+  "scripts": {
+    "cleanup": "shx rm -rf umd lib lib-esm typings",
+    "prebuild": "npm run cleanup && npm run verify",
+    "build": " tsc && tsc -p tsconfig.es6.json && webpack",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "ts:lint": "tslint \"src/**/*.tsx\" \"src/**/*.ts\"",
+    "ts:lint:fix": "npm run ts:lint -- --fix",
+    "ts:format": "tsfmt --verify",
+    "ts:format:fix": "tsfmt -r",
+    "ts:style": "npm run ts:lint && npm run ts:format",
+    "ts:style:fix": "npm run ts:lint:fix && npm run ts:format:fix",
+    "verify": "npm run ts:style && npm test",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg",
+    "prepush": "npm run verify",
+    "release": "release:local && release:github && release:npm",
+    "release:local": "npm run build && standard-version",
+    "release:github": "git push --no-verify --follow-tags origin master",
+    "release:npm": "npm publish"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "maxSubjectLength": 120
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "awesome-typescript-loader": "3.0.8",
+    "commitizen": "2.9.6",
+    "cz-conventional-changelog": "2.0.0",
+    "husky": "0.13.1",
+    "shx": "0.2.2",
+    "standard-version": "4.0.0",
+    "tslint": "4.4.2",
+    "tslint-react": "2.4.0",
+    "typescript": "2.2.1",
+    "typescript-formatter": "4.1.2",
+    "validate-commit-msg": "2.11.1",
+    "webpack": "2.2.1"
   }
 }

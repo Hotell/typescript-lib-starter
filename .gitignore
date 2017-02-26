@@ -1,7 +1,9 @@
 .vscode
+.idea
 .DS_Store
 node_modules
 
 lib
 lib-esm
-_bundles
+umd
+typings

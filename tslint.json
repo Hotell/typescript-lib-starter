@@ -138,7 +138,7 @@
       "check-function-in-method"
     ],
     "import-spacing": true,
-    "ordered-imports": [false],
+    "ordered-imports": [true],
     "interface-name": [false],
     "no-angle-bracket-type-assertion": true,
     "object-literal-shorthand": true,

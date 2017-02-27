@@ -5,6 +5,7 @@
   "main": "lib/index",
   "module": "lib-esm/index",
   "jsnext:main": "lib-esm/index",
+  "umd:main": "umd/typescript-lib-starter.min.js",
   "typings": "typings/index.d.ts",
   "repository": "https://www.github.com/Hotell/typescript-lib-starter",
   "author": "Martin Hochel",

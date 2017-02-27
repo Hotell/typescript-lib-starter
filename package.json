@@ -1,6 +1,6 @@
 {
   "name": "typescript-lib-starter",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
   "main": "lib/index",
   "module": "lib-esm/index",
@@ -27,7 +27,7 @@
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run verify",
-    "release": "npm run release:local && npm run release:github && npm run release:npm",
+    "release": "npm run release:local && npm run release:github",
     "release:local": "npm run build && standard-version",
     "release:github": "git push --no-verify --follow-tags origin master",
     "release:npm": "npm publish"

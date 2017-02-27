@@ -30,7 +30,9 @@
     "release": "npm run release:local && npm run release:github && npm run release:npm",
     "release:local": "npm run build && standard-version",
     "release:github": "git push --no-verify --follow-tags origin master",
-    "release:npm": "npm publish"
+    "release:npm": "npm publish",
+    "release:preflight": "irish-pub",
+    "release:preflight:package": "npm pack"
   },
   "config": {
     "commitizen": {
@@ -47,6 +49,7 @@
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.0.0",
     "husky": "0.13.1",
+    "irish-pub": "0.2.0",
     "shx": "0.2.2",
     "standard-version": "4.0.0",
     "tslint": "4.4.2",

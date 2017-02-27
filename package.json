@@ -27,7 +27,7 @@
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run verify",
-    "release": "npm run release:local && npm run release:github",
+    "release": "npm run release:local && npm run release:github && npm run release:npm",
     "release:local": "npm run build && standard-version",
     "release:github": "git push --no-verify --follow-tags origin master",
     "release:npm": "npm publish"

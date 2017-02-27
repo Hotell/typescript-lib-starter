@@ -1,13 +1,15 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 
+const { name: packageName } = require('./package.json');
+
 const PATHS = {
   entryPoint: resolve(__dirname, 'src/index.ts'),
   bundles: resolve(__dirname, 'umd'),
 }
 
 const UMD = {
-  libName: 'MyLib'
+  libName: pascalCase(packageName),
 }
 
 const config = (env) => {
@@ -18,8 +20,8 @@ const config = (env) => {
     // the name to filter the second entry point for applying code
     // minification via UglifyJS
     entry: {
-      [camelCaseToDash(UMD.libName)]: [PATHS.entryPoint],
-      [`${camelCaseToDash(UMD.libName)}.min`]: [PATHS.entryPoint]
+      [packageName]: [PATHS.entryPoint],
+      [`${packageName}.min`]: [PATHS.entryPoint]
     },
     // The output defines how and where we want the bundles. The special
     // value `[name]` in `filename` tell Webpack to use the name we defined above.
@@ -84,4 +86,16 @@ module.exports = config;
 
 function camelCaseToDash(myStr) {
   return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+function dashToCamelCase(myStr) {
+  return myStr.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+}
+
+function toUpperCase(myStr) {
+  return `${myStr.charAt(0).toUpperCase()}${myStr.substr(1)}`;
+}
+
+function pascalCase(myStr) {
+  return toUpperCase(dashToCamelCase(myStr));
 }

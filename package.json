@@ -1,6 +1,6 @@
 {
   "name": "typescript-lib-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
   "main": "lib/index",
   "module": "lib-esm/index",

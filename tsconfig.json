@@ -3,9 +3,5 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "typings"
-  },
-  // @TODO remove this when https://github.com/vvakame/typescript-formatter/issues/77 is fixed
-  "include": [
-    "./src"
-  ]
+  }
 }

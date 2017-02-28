@@ -57,7 +57,7 @@
     "shx": "0.2.2",
     "standard-version": "4.0.0",
     "strip-json-comments-cli": "1.0.1",
-    "tslint": "4.5.0",
+    "tslint": "4.5.1",
     "tslint-react": "2.4.0",
     "typescript": "2.2.1",
     "typescript-formatter": "5.0.1",

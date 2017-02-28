@@ -1332,7 +1332,7 @@ cross-spawn@^5.0.1:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-var@^1.0.2:
+cross-var@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cross-var/-/cross-var-1.0.2.tgz#e64c447f3de1e6cca6dfe42f2fe3ca41e4b938e8"
   dependencies:
@@ -1946,7 +1946,7 @@ graceful-fs@~3.0.2:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-gzip-size-cli@^2.0.0:
+gzip-size-cli@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/gzip-size-cli/-/gzip-size-cli-2.0.0.tgz#d0d3dae1b9c6265b7fe99a01c0688eceda28d2f0"
   dependencies:
@@ -3364,7 +3364,7 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments-cli@^1.0.1:
+strip-json-comments-cli@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments-cli/-/strip-json-comments-cli-1.0.1.tgz#45d973c24bfb6788bc3e6ae9e6dfcbc0bfaebe21"
   dependencies:
@@ -3490,9 +3490,9 @@ tslint-react@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-2.4.0.tgz#82c314f2752c419c6e41d9789587ef42f64261ea"
 
-tslint@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.5.0.tgz#12b384a339d456ee1d3cc665f13f4e759bbe5d64"
+tslint@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.5.1.tgz#05356871bef23a434906734006fc188336ba824b"
   dependencies:
     babel-code-frame "^6.20.0"
     colors "^1.1.2"

@@ -78,6 +78,20 @@ render(App, mountPoint);
 
 `yarn release`
 
+
+Initial Release (without bumping package.json version):
+
+`yarn release -- --first-release`
+
+## Check what files gonna be published to npm
+
+- CLI output via `yarn release:preflight`
+- or `yarn release:preflight:package` will create tarball which you can check
+
+## Check size of your published NPM bundle
+
+run `yarn build` then `npm run size`
+
 ## Format and fix lint errors
 
 `yarn ts:style:fix`

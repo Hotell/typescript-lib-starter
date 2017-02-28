@@ -18,7 +18,7 @@
     "prebuild": "npm run cleanup && npm run verify",
     "build": " tsc && tsc -p tsconfig.es6.json && webpack",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "ts:lint": "tslint \"src/**/*.tsx\" \"src/**/*.ts\"",
+    "ts:lint": "tslint  --project tsconfig.json --type-check \"src/**/*.tsx\" \"src/**/*.ts\"",
     "ts:lint:fix": "npm run ts:lint -- --fix",
     "ts:format": "tsfmt --verify",
     "ts:format:fix": "tsfmt -r",
@@ -53,10 +53,10 @@
     "irish-pub": "0.2.0",
     "shx": "0.2.2",
     "standard-version": "4.0.0",
-    "tslint": "4.4.2",
+    "tslint": "4.5.0",
     "tslint-react": "2.4.0",
     "typescript": "2.2.1",
-    "typescript-formatter": "4.1.2",
+    "typescript-formatter": "5.0.1",
     "validate-commit-msg": "2.11.1",
     "webpack": "2.2.1"
   }

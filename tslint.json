@@ -1,5 +1,7 @@
 {
-  "extends": ["tslint-react"],
+  "extends": [
+    "tslint-react"
+  ],
   "rules": {
     "jsx-no-lambda": true,
     "jsx-alignment": true,
@@ -8,13 +10,14 @@
     "jsx-no-multiline-js": false,
     "jsx-curly-spacing": false,
     "jsx-wrap-multiline": false,
-
     "arrow-parens": true,
     "class-name": true,
     "comment-format": [
       true,
       "check-space"
     ],
+    "use-isnan": true,
+    "await-promise": true,
     "curly": true,
     "eofline": true,
     "forin": true,
@@ -23,6 +26,10 @@
       "spaces"
     ],
     "label-position": true,
+    "linebreak-style":[
+      true,
+      "LF"
+    ],
     "max-line-length": [
       true,
       120
@@ -49,6 +56,17 @@
       true
     ],
     "no-trailing-whitespace": true,
+    "no-consecutive-blank-lines": [
+      true
+    ],
+    "no-inferrable-types": [
+      true
+    ],
+    "no-unnecessary-initializer": true,
+    "no-magic-numbers": true,
+    "no-require-imports": true,
+    "no-duplicate-super": true,
+    "no-boolean-literal-compare": true,
     "no-unused-expression": true,
     "no-use-before-declare": false,
     "no-var-keyword": true,
@@ -65,7 +83,6 @@
       "always",
       "ignore-interfaces"
     ],
-
     "triple-equals": [
       true,
       "allow-null-check"
@@ -138,11 +155,45 @@
       "check-function-in-method"
     ],
     "import-spacing": true,
-    "ordered-imports": [true],
-    "interface-name": [false],
+    "ordered-imports": [
+      true
+    ],
+    "interface-name": [
+      false
+    ],
     "no-angle-bracket-type-assertion": true,
+    "newline-before-return": true,
     "object-literal-shorthand": true,
     "typeof-compare": true,
-    "arrow-return-shorthand": [true]
+    "arrow-return-shorthand": [
+      true
+    ],
+    "unified-signatures": true,
+    "prefer-for-of": true,
+    "match-default-export-name": true,
+    "prefer-const": true,
+    "ban-types": [
+      true,
+      [
+        "Object",
+        "Use '{}' instead."
+      ],
+      [
+        "String",
+        "Use 'string' instead."
+      ],
+      [
+        "Number",
+        "Use 'number' instead."
+      ],
+      [
+        "Array",
+        "Use 'type[]' instead."
+      ],
+      [
+        "Boolean",
+        "Use 'boolean' instead."
+      ]
+    ]
   }
 }

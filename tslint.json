@@ -172,6 +172,7 @@
     "prefer-for-of": true,
     "match-default-export-name": true,
     "prefer-const": true,
+    "prefer-method-signature": true,
     "ban-types": [
       true,
       [

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.2.0...v1.3.0) (2017-03-15)
+
+
+### Features
+
+* **scripts:** add ability to use --first-release on release script ([c94694a](https://www.github.com/Hotell/typescript-lib-starter/commit/c94694a))
+* **scripts:** add size script to get gzipped build size for umd bundle ([d25138a](https://www.github.com/Hotell/typescript-lib-starter/commit/d25138a))
+* add unit testing and coverage support via jest ([0551a52](https://www.github.com/Hotell/typescript-lib-starter/commit/0551a52))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.1.1...v1.2.0) (2017-02-27)
 

@@ -20,7 +20,7 @@
     "cleanup": "shx rm -rf umd lib lib-esm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
     "build": " tsc && tsc --module es2015 --target es2015 --outDir lib-esm && webpack",
-    "docs": "typedoc -p . --theme minimal --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
+    "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -59,10 +59,13 @@
         "module": "commonjs"
       }
     },
+    "roots": [
+      "<rootDir>/src"
+    ],
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",

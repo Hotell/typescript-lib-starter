@@ -1,5 +1,5 @@
 {
-  "name": "typescript-lib-starter",
+  "name": "@next-gen/typescript-lib-starter",
   "version": "1.3.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
   "main": "lib/index.js",
@@ -7,7 +7,10 @@
   "jsnext:main": "lib-esm/index.js",
   "umd:main": "umd/typescript-lib-starter.min.js",
   "typings": "typings/index.d.ts",
-  "repository": "https://www.github.com/Hotell/typescript-lib-starter",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/Hotell/typescript-lib-starter"
+  },
   "author": "Martin Hochel",
   "license": "MIT",
   "engines": {
@@ -87,23 +90,24 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "19.2.2",
-    "awesome-typescript-loader": "3.0.8",
+    "awesome-typescript-loader": "3.1.2",
     "commitizen": "2.9.6",
-    "cross-var": "1.0.2",
+    "cross-var": "1.0.3",
     "cz-conventional-changelog": "2.0.0",
     "gzip-size-cli": "2.0.0",
-    "husky": "0.13.1",
+    "husky": "0.13.3",
     "irish-pub": "0.2.0",
     "jest": "19.0.2",
     "shx": "0.2.2",
     "standard-version": "4.0.0",
     "strip-json-comments-cli": "1.0.1",
-    "ts-jest": "19.0.1",
+    "ts-jest": "19.0.6",
     "tslint": "4.5.1",
-    "tslint-react": "2.4.0",
+    "tslint-config-standard": "4.0.0",
+    "tslint-react": "2.5.0",
     "typescript": "2.2.1",
-    "typescript-formatter": "5.0.1",
-    "validate-commit-msg": "2.11.1",
-    "webpack": "2.2.1"
+    "typescript-formatter": "5.1.2",
+    "validate-commit-msg": "2.11.2",
+    "webpack": "2.3.2"
   }
 }

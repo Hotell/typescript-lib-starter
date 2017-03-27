@@ -19,7 +19,7 @@
   "scripts": {
     "cleanup": "shx rm -rf umd lib lib-esm typings coverage",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": " tsc && tsc -p tsconfig.es6.json && webpack",
+    "build": " tsc && tsc --module es2015 --target es2015 --outDir lib-esm && webpack",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",

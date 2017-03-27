@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.3.0...v1.4.0) (2017-03-27)
+
+
+### Bug Fixes
+
+* add *.log to gitignore/npmignore ([502ab00](https://www.github.com/Hotell/typescript-lib-starter/commit/502ab00))
+* make tests work on windows ([5650754](https://www.github.com/Hotell/typescript-lib-starter/commit/5650754))
+* normalize umd bundle name after scope addition ([73ab65f](https://www.github.com/Hotell/typescript-lib-starter/commit/73ab65f))
+
+
+### Features
+
+* add docs generation via typedoc ([b59f2b6](https://www.github.com/Hotell/typescript-lib-starter/commit/b59f2b6))
+* add strong type checking ([860e500](https://www.github.com/Hotell/typescript-lib-starter/commit/860e500))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.2.0...v1.3.0) (2017-03-15)
 

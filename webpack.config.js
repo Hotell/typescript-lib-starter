@@ -1,7 +1,8 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 
-const { name: packageName } = require('./package.json');
+const packageJSON = require('./package.json');
+const packageName = normalizePackageName(packageJSON.name);
 
 const PATHS = {
   entryPoint: resolve(__dirname, 'src/index.ts'),
@@ -70,8 +71,9 @@ const config = (env) => {
             // we don't want any declaration file in the bundles
             // folder since it wouldn't be of any use ans the source
             // map already include everything for debugging
+
+            // This cannot be set because -> Option 'declarationDir' cannot be specified without specifying option 'declaration'.
             // declaration: false,
-            configFileName: 'tsconfig.base.json',
           }
         }],
       }]
@@ -98,4 +100,10 @@ function toUpperCase(myStr) {
 
 function pascalCase(myStr) {
   return toUpperCase(dashToCamelCase(myStr));
+}
+
+function normalizePackageName(rawPackageName){
+  const scopeEnd = rawPackageName.indexOf('/') + 1;
+
+  return rawPackageName.substring(scopeEnd);
 }

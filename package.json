@@ -2,10 +2,9 @@
   "name": "@next-gen/typescript-lib-starter",
   "version": "1.5.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
-  "main": "lib/index.js",
-  "module": "lib-esm/index.js",
-  "jsnext:main": "lib-esm/index.js",
-  "umd:main": "umd/typescript-lib-starter.min.js",
+  "main": "umd/typescript-lib-starter.js",
+  "module": "lib/index.js",
+  "es2015": "lib-esm/index.js",
   "typings": "typings/index.d.ts",
   "repository": {
     "type": "git",
@@ -19,7 +18,7 @@
   "scripts": {
     "cleanup": "shx rm -rf umd lib lib-esm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": " tsc && tsc --module es2015 --target es2015 --outDir lib-esm && webpack",
+    "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
     "test:watch": "npm test -- --watch",

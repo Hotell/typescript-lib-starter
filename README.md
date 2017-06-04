@@ -5,26 +5,47 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 
-> based on https://github.com/elboman/typescript-lib-example and http://marcobotto.com/compiling-and-bundling-typescript-libraries-with-webpack/
+This npm library starter:
 
-- proper package.json file references for build
-- compiles esm-lib to vanilla es2015 instead just es2015 modules
-- compiles types to `typings` folder instead of multiple distribution
-- umd is shiped under `umd` folder instead of `_bundles`
+- creates package for both Node and Browser
+- build creates 3 standard "bundle" formats:
+  - main -> UMD bundle for Node and Browser
+  - module -> transpiled files to ES5 + es2015 modules for tree shaking
+  - es2015 -> raw files transpiled to latest ES standard ( es2017 ) ( this is useful if you wann transpile everthing or just wann ship untranspiled esNext code for evergreen browsers)
+- type definitions are automatically generated and shipped with your package
+
+## Start coding jedi!
+
+`git clone https://github.com/Hotell/typescript-lib-starter <your-libary-folder-name>`
+
+`cd <your-libary-folder-name>`
+
+`rm -rf .git && git init`
+
+Open `package.json` and reset following fields:
+- name
+- version ( It is recommended to start from 1.0.0 )
+- description
+- main ( "umd/typescript-lib-starter.js" => "umd/{name}.js" )
+- repository.url
+- author
+- license ( use whatever you want )
+
+Now install all dependencies
+
+`yarn install`
+
+Happy coding !
 
 ## Consumption of published library:
 
-library is shiped in 3 formats:
-
-- raw es2015 module and code format ( ideal for tree shaking with Webpack 2 )
-- CommonJS format for bundler consumption
-- UMD format for usage withou bundler
+`yarn add my-new-library` or `npm install my-new-library`
 
 ### Webpack
 
 ```ts
 // main.ts
-import {Greeter} from 'my-lib';
+import { Greeter } from 'my-new-library';
 
 const mountPoint = document.getElementById('app');
 const App = () => {
@@ -54,7 +75,7 @@ render(App, mountPoint);
 ```html
 <html>
   <head>
-    <script src="node_modules/my-lib/umd/my-lib.min.js"></script>
+    <script src="node_modules/my-lib/umd/my-new-library.min.js"></script>
     <script async>
         var Greeter = MyLib.Greeter;
 
@@ -75,12 +96,23 @@ render(App, mountPoint);
 </html>
 ```
 
-## Release
+## Publishing/Release
+
+> NOTE: you have to create npm account and register token on your machine
+> -> `npm adduser`
+>
+> If you are using scope don't forget to [`--scope`](https://docs.npmjs.com/cli/adduser#scope)
 
 `yarn release`
 
+which will do following:
+- bump version and tag
+- updates/creates CHANGELOG.md
+- pushes to github master branch
+- publishes build package to npm
 
-Initial Release (without bumping package.json version):
+
+### Initial Release (without bumping package.json version):
 
 `yarn release -- --first-release`
 
@@ -97,6 +129,14 @@ run `yarn build` then `npm run size`
 
 `yarn ts:style:fix`
 
+## Generate documentation
+
+`yarn docs`
+
 ## Commit ( via commitizen )
 
-`yarn cz`
+- this is preffered way how to create convetional-changelog valid commits
+- if you preffer your custom tool we provide a commit hook linter which will error out, it you provide invalid commit message
+- if you are in rush and just wanna skip commit message valiation just prefix your message with `WIP: something done` ( if you do this please squash your work when you're done with proper commit message so standard-version can create Changelog and bump version of your library appropriately )
+
+`yarn cz` - will invoke [commitizen CLI](https://github.com/commitizen/cz-cli)

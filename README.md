@@ -99,4 +99,4 @@ run `yarn build` then `npm run size`
 
 ## Commit ( via commitizen )
 
-`yarn commit`
+`yarn cz`

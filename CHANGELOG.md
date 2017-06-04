@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.4.0...v1.5.0) (2017-06-04)
+
+
+### Bug Fixes
+
+* **build:** allow first-release command ([10294c5](https://www.github.com/Hotell/typescript-lib-starter/commit/10294c5))
+* always set strict versions via npm or yarn ([eee2150](https://www.github.com/Hotell/typescript-lib-starter/commit/eee2150))
+* remove dot files from gitignore ([e292c53](https://www.github.com/Hotell/typescript-lib-starter/commit/e292c53))
+* **npm-scripts:** rename commit to cz so husky wont run precommit twice ([248a570](https://www.github.com/Hotell/typescript-lib-starter/commit/248a570))
+
+
+### Features
+
+* migrate to prettier and bump deps ([999043e](https://www.github.com/Hotell/typescript-lib-starter/commit/999043e))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.3.0...v1.4.0) (2017-03-27)
 

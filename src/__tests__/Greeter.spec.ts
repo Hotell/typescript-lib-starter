@@ -1,7 +1,6 @@
 import { Greeter } from '../Greeter'
 
 describe(`Greeter`, () => {
-
   let greeter: Greeter
 
   beforeEach(() => {
@@ -9,12 +8,9 @@ describe(`Greeter`, () => {
   })
 
   it(`should greet`, () => {
-
     const actual = greeter.greet()
     const expected = 'Hello, World!'
 
     expect(actual).toBe(expected)
-
   })
-
 })

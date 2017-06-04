@@ -13,8 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "pretty": true,
     "jsx": "react",
-    // change this to any hyperscript like function taht you're using'
-    "jsxFactory": "React",
+    // change this to any hyperscript like function that you're using
+    "jsxFactory": "React.createElement",
     "sourceMap": true,
     "outDir": "lib",
     "declaration": true,

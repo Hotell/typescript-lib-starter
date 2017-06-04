@@ -32,7 +32,7 @@
     "ts:style": "npm run ts:format && npm run ts:lint",
     "ts:style:fix": "npm run ts:format:fix && npm run ts:lint:fix",
     "verify": "npm run ts:style && npm test",
-    "commit": "git-cz",
+    "cz": "git-cz",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run verify",

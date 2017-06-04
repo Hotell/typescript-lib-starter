@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.5.0...v1.6.0) (2017-06-04)
+
+
+### Bug Fixes
+
+* **npm-scripts:** typo in pre release script name ([8f5fae4](https://www.github.com/Hotell/typescript-lib-starter/commit/8f5fae4))
+
+
+### Features
+
+* **build:** use 3 new standard formats for shipping libraries ([fdd413e](https://www.github.com/Hotell/typescript-lib-starter/commit/fdd413e))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.4.0...v1.5.0) (2017-06-04)
 

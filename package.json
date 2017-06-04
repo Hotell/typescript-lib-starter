@@ -42,7 +42,7 @@
     "release:npm": "npm publish",
     "release:preflight": "irish-pub",
     "release:preflight:package": "npm pack",
-    "size": "shx echo \"Gzipped Size:\" && cross-var strip-json-comments --no-whitespace $npm_package_umd_main | gzip-size"
+    "size": "shx echo \"Gzipped Size:\" && cross-var strip-json-comments --no-whitespace $npm_package_main | gzip-size"
   },
   "config": {
     "commitizen": {

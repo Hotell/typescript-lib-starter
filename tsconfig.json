@@ -7,15 +7,14 @@
       "es2015",
       "dom"
     ],
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
     "pretty": true,
     "jsx": "react",
+    // change this to any hyperscript like function taht you're using'
+    "jsxFactory": "React",
     "sourceMap": true,
     "outDir": "lib",
     "declaration": true,

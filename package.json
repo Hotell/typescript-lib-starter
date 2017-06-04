@@ -22,16 +22,18 @@
     "build": " tsc && tsc --module es2015 --target es2015 --outDir lib-esm && webpack",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "ts:lint": "tslint  --project tsconfig.json --type-check \"src/**/*.tsx\" \"src/**/*.ts\"",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "ts:lint": "tslint  --project tsconfig.json --type-check \"src/**/*.{ts,tsx}\"",
     "ts:lint:fix": "npm run ts:lint -- --fix",
-    "ts:format": "tsfmt --verify",
-    "ts:format:fix": "tsfmt -r",
+    "ts:format:base": "prettier --single-quote --print-width 120 --trailing-comma es5 --no-semi --parser typescript {src,__{tests,mocks}__}/**/*.{ts,tsx}",
+    "ts:format": "npm run ts:format:base -- --list-different",
+    "ts:format:fix": "npm run ts:format:base -- --write",
     "ts:style": "npm run ts:format && npm run ts:lint",
     "ts:style:fix": "npm run ts:format:fix && npm run ts:lint:fix",
     "verify": "npm run ts:style && npm test",
     "commit": "git-cz",
+    "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run verify",
     "prerelase": "npm run build",
@@ -52,17 +54,18 @@
       "maxSubjectLength": 120
     }
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "ts:style:fix",
+      "git add"
+    ]
+  },
   "jest": {
-    "globals": {
-      "__TS_CONFIG__": {
-        "module": "commonjs"
-      }
-    },
     "roots": [
       "<rootDir>/src"
     ],
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
@@ -70,10 +73,7 @@
       "tsx",
       "js"
     ],
-    "modulePathIgnorePatterns": [
-      "/^((?!src).)/"
-    ],
-    "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
+    "mapCoverage": true,
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/lib/",
@@ -92,26 +92,27 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "19.2.2",
-    "awesome-typescript-loader": "3.1.2",
+    "@types/jest": "19.2.4",
+    "awesome-typescript-loader": "3.1.3",
     "commitizen": "2.9.6",
     "cross-var": "1.0.3",
     "cz-conventional-changelog": "2.0.0",
     "gzip-size-cli": "2.0.0",
-    "husky": "0.13.3",
+    "husky": "0.13.4",
     "irish-pub": "0.2.0",
-    "jest": "19.0.2",
+    "jest": "20.0.4",
+    "lint-staged": "3.6.0",
+    "prettier": "1.4.2",
     "shx": "0.2.2",
     "standard-version": "4.0.0",
     "strip-json-comments-cli": "1.0.1",
-    "ts-jest": "19.0.6",
-    "tslint": "4.5.1",
-    "tslint-config-standard": "4.0.0",
-    "tslint-react": "2.5.0",
-    "typedoc": "0.5.9",
-    "typescript": "2.2.1",
-    "typescript-formatter": "5.1.2",
-    "validate-commit-msg": "2.11.2",
-    "webpack": "2.3.2"
+    "ts-jest": "20.0.5",
+    "tslint": "5.4.2",
+    "tslint-config-standard": "5.0.2",
+    "tslint-react": "3.0.0",
+    "typedoc": "0.7.1",
+    "typescript": "2.3.4",
+    "validate-commit-msg": "2.12.1",
+    "webpack": "2.6.1"
   }
 }

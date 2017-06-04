@@ -4,6 +4,7 @@
     "tslint-react"
   ],
   "rules": {
+    // tslint-react rules
     "jsx-no-lambda": true,
     "jsx-alignment": true,
     "jsx-no-string-ref": true,
@@ -12,8 +13,10 @@
     "jsx-curly-spacing": false,
     "jsx-wrap-multiline": false,
     "jsx-boolean-value": [true,"never"],
+    // core ts-lint rules
     "arrow-parens": true,
     "await-promise": true,
+    "no-unused-variable": true,
     "forin": true,
     "indent": [
       true,

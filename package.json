@@ -35,7 +35,7 @@
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run verify",
-    "prerelase": "npm run build",
+    "prerelease": "npm run build",
     "release": "standard-version",
     "postrelease": "npm run release:github && npm run release:npm",
     "release:github": "git push --no-verify --follow-tags origin master",

@@ -1,18 +1,16 @@
-const { resolve } = require('path');
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const { resolve } = require('path')
+const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
+const packageJSON = require('./package.json')
+const packageName = normalizePackageName(packageJSON.name)
 
-const packageJSON = require('./package.json');
-const packageName = normalizePackageName(packageJSON.name);
-
-
-const LIB_NAME = pascalCase(packageName);
+const LIB_NAME = pascalCase(packageName)
 const PATHS = {
   entryPoint: resolve(__dirname, 'src/index.ts'),
   umd: resolve(__dirname, 'umd'),
-  fesm: resolve(__dirname, 'lib-fesm')
-};
+  fesm: resolve(__dirname, 'lib-fesm'),
+}
 
 const EXTERNALS = {
   // lodash: {
@@ -21,7 +19,7 @@ const EXTERNALS = {
   //   amd: "lodash",
   //   root: "_"
   // }
-};
+}
 
 const RULES = {
   ts: {
@@ -36,9 +34,9 @@ const RULES = {
           // map already include everything for debugging
           // This cannot be set because -> Option 'declarationDir' cannot be specified without specifying option 'declaration'.
           // declaration: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   tsNext: {
     test: /\.tsx?$/,
@@ -47,12 +45,12 @@ const RULES = {
       {
         loader: 'awesome-typescript-loader',
         options: {
-          target: 'es2017'
-        }
-      }
-    ]
-  }
-};
+          target: 'es2017',
+        },
+      },
+    ],
+  },
+}
 
 const PLUGINS = [
   // enable scope hoisting
@@ -60,13 +58,12 @@ const PLUGINS = [
   // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
   new UglifyJSPlugin({
     sourceMap: true,
-    include: /\.min\.js$/
+    include: /\.min\.js$/,
   }),
   new webpack.LoaderOptionsPlugin({
-    minimize: true
-  })
-];
-
+    minimize: true,
+  }),
+]
 
 const config = env => {
   const UMDConfig = {
@@ -76,7 +73,7 @@ const config = env => {
     // minification via UglifyJS
     entry: {
       [packageName]: [PATHS.entryPoint],
-      [`${packageName}.min`]: [PATHS.entryPoint]
+      [`${packageName}.min`]: [PATHS.entryPoint],
     },
     // The output defines how and where we want the bundles. The special
     // value `[name]` in `filename` tell Webpack to use the name we defined above.
@@ -89,12 +86,12 @@ const config = env => {
       library: LIB_NAME,
       // libraryExport:  UMD.libName,
       // will name the AMD module of the UMD build. Otherwise an anonymous define is used.
-      umdNamedDefine: true
+      umdNamedDefine: true,
     },
     // Add resolve for `tsx` and `ts` files, otherwise Webpack would
     // only look for common JavaScript file extension (.js)
     resolve: {
-      extensions: ['.ts', '.tsx', '.js']
+      extensions: ['.ts', '.tsx', '.js'],
     },
     // add here all 3rd party libraries that you will use as peerDependncies
     // https://webpack.js.org/guides/author-libraries/#add-externals
@@ -104,14 +101,14 @@ const config = env => {
     devtool: 'source-map',
     plugins: PLUGINS,
     module: {
-      rules: [RULES.ts]
-    }
-  };
+      rules: [RULES.ts],
+    },
+  }
 
   const FESMconfig = Object.assign({}, UMDConfig, {
-     entry: {
-      'index': [PATHS.entryPoint],
-      'index.min': [PATHS.entryPoint]
+    entry: {
+      index: [PATHS.entryPoint],
+      'index.min': [PATHS.entryPoint],
     },
     output: {
       path: PATHS.fesm,
@@ -120,33 +117,33 @@ const config = env => {
     module: {
       rules: [RULES.tsNext],
     },
-  });
+  })
 
-  return [UMDConfig, FESMconfig];
-};
+  return [UMDConfig, FESMconfig]
+}
 
-module.exports = config;
+module.exports = config
 
 // helpers
 
 function camelCaseToDash(myStr) {
-  return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
 function dashToCamelCase(myStr) {
-  return myStr.replace(/-([a-z])/g, g => g[1].toUpperCase());
+  return myStr.replace(/-([a-z])/g, g => g[1].toUpperCase())
 }
 
 function toUpperCase(myStr) {
-  return `${myStr.charAt(0).toUpperCase()}${myStr.substr(1)}`;
+  return `${myStr.charAt(0).toUpperCase()}${myStr.substr(1)}`
 }
 
 function pascalCase(myStr) {
-  return toUpperCase(dashToCamelCase(myStr));
+  return toUpperCase(dashToCamelCase(myStr))
 }
 
 function normalizePackageName(rawPackageName) {
-  const scopeEnd = rawPackageName.indexOf('/') + 1;
+  const scopeEnd = rawPackageName.indexOf('/') + 1
 
-  return rawPackageName.substring(scopeEnd);
+  return rawPackageName.substring(scopeEnd)
 }

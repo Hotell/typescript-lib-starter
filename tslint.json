@@ -1,7 +1,8 @@
 {
   "extends": [
     "tslint-config-standard",
-    "tslint-react"
+    "tslint-react",
+    "tslint-config-prettier"
   ],
   "rules": {
     // tslint-react rules

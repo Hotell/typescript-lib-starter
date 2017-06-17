@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const webpack = require('webpack')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 
 const packageJSON = require('./package.json')
@@ -63,9 +63,13 @@ const config = (env = DEFAULT_ENV) => {
     new webpack.optimize.ModuleConcatenationPlugin(),
     // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
     ifProd(
-      new UglifyJSPlugin({
+      new UglifyJsPlugin({
         sourceMap: true,
-        include: /\.min\.js$/,
+        compress: {
+          screw_ie8: true,
+          warnings: false,
+        },
+        output: { comments: false },
       })
     ),
     new webpack.LoaderOptionsPlugin({

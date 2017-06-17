@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.7.0"></a>
+# [1.7.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.6.0...v1.7.0) (2017-06-17)
+
+
+### Bug Fixes
+
+* **build:** correctly setup uglify options ([6c0f4b2](https://www.github.com/Hotell/typescript-lib-starter/commit/6c0f4b2))
+* **npm-scripts:** use proper npm variable for targeting main path in 'size' command ([7fc44b1](https://www.github.com/Hotell/typescript-lib-starter/commit/7fc44b1))
+* **ts-lint:** add tslint-config-prettier so tslint doesn't clash with prettier ([10a8524](https://www.github.com/Hotell/typescript-lib-starter/commit/10a8524))
+
+
+### Features
+
+* **build:** add environment aware builds with env helpers ([cd87599](https://www.github.com/Hotell/typescript-lib-starter/commit/cd87599))
+* **build:** update to webpack 3 with scope hoisting + enable experimental flat esm bundle (#3) ([baa63ba](https://www.github.com/Hotell/typescript-lib-starter/commit/baa63ba)), closes [#2](https://www.github.com/Hotell/typescript-lib-starter/issues/2)
+* **npm-scripts:** run only tests for affected files in prepush and exit immediately if some tests f ([d4316b4](https://www.github.com/Hotell/typescript-lib-starter/commit/d4316b4))
+* **ts-lint:** provide nice error output ([c66b4f7](https://www.github.com/Hotell/typescript-lib-starter/commit/c66b4f7))
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.5.0...v1.6.0) (2017-06-04)
 

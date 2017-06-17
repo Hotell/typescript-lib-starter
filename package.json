@@ -1,6 +1,6 @@
 {
   "name": "@next-gen/typescript-lib-starter",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
   "main": "umd/typescript-lib-starter.js",
   "module": "lib/index.js",

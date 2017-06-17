@@ -16,9 +16,10 @@
     "node": ">=6.9"
   },
   "scripts": {
-    "cleanup": "shx rm -rf umd lib lib-esm typings coverage docs",
+    "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
     "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack",
+    "build:fesm:min": "uglifyjs lib-fesm/index.js --compress --mangle --source-map --output lib-fesm/index.min.js",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
     "test:watch": "npm test -- --watch",
@@ -92,7 +93,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "19.2.4",
+    "@types/jest": "20.0.0",
     "awesome-typescript-loader": "3.1.3",
     "commitizen": "2.9.6",
     "cross-var": "1.0.3",
@@ -101,18 +102,20 @@
     "husky": "0.13.4",
     "irish-pub": "0.2.0",
     "jest": "20.0.4",
-    "lint-staged": "3.6.0",
-    "prettier": "1.4.2",
+    "lint-staged": "3.6.1",
+    "prettier": "1.4.4",
     "shx": "0.2.2",
     "standard-version": "4.0.0",
     "strip-json-comments-cli": "1.0.1",
-    "ts-jest": "20.0.5",
-    "tslint": "5.4.2",
-    "tslint-config-standard": "5.0.2",
+    "ts-jest": "20.0.6",
+    "tslint": "5.4.3",
+    "tslint-config-standard": "6.0.1",
     "tslint-react": "3.0.0",
     "typedoc": "0.7.1",
     "typescript": "2.3.4",
-    "validate-commit-msg": "2.12.1",
-    "webpack": "2.6.1"
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
+    "uglifyjs-webpack-plugin": "0.4.3",
+    "validate-commit-msg": "2.12.2",
+    "webpack": "3.0.0-rc.2"
   }
 }

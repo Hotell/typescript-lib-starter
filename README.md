@@ -12,6 +12,7 @@ This npm library starter:
   - main -> UMD bundle for Node and Browser
   - module -> transpiled files to ES5 + es2015 modules for tree shaking
   - es2015 -> raw files transpiled to latest ES standard ( es2017 ) ( this is useful if you wann transpile everthing or just wann ship untranspiled esNext code for evergreen browsers)
+- also we provide experimantal **FESM** bundle thanks to Webpack 3 and scope hoisting -> you can find it in `lib-fesm` folder ( scope hoisting is now enabled also within UMD == smaller payload size )
 - type definitions are automatically generated and shipped with your package
 
 ## Start coding jedi!

@@ -1,8 +1,10 @@
 # Typescript lib starter
 
 [![Build Status](https://travis-ci.org/Hotell/typescript-lib-starter.svg?branch=master)](https://travis-ci.org/Hotell/typescript-lib-starter)
+[![NPM version](https://img.shields.io/npm/v/standard-version.svg)](https://www.npmjs.com/package/typescript-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
 This npm library starter:
@@ -112,10 +114,32 @@ which will do following:
 - pushes to github master branch
 - publishes build package to npm
 
+> releases are handled by awesome [standard-version](https://github.com/conventional-changelog/standard-version)
+
 
 ### Initial Release (without bumping package.json version):
 
 `yarn release -- --first-release`
+
+### Pre-release
+
+- To get from `1.1.2` to `1.1.2-0`:
+
+`yarn release -- --prerelease`
+
+- **Alpha**: To get from `1.1.2` to `1.1.2-alpha.0`:
+
+`yarn release -- --prerelease alpha`
+
+- **Beta**: To get from `1.1.2` to `1.1.2-beta.0`:
+
+`yarn release -- --prerelease beta`
+
+### Dry run mode
+
+See what commands would be run, without committing to git or updating files
+
+`yarn release -- --dry-run`
 
 ## Check what files gonna be published to npm
 

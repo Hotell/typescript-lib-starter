@@ -106,7 +106,7 @@
     "lint-staged": "3.6.1",
     "prettier": "1.4.4",
     "shx": "0.2.2",
-    "standard-version": "4.0.0",
+    "standard-version": "4.2.0",
     "strip-json-comments-cli": "1.0.1",
     "ts-jest": "20.0.6",
     "tslint": "5.4.3",

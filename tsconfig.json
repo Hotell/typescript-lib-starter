@@ -20,7 +20,8 @@
     "sourceMap": true,
     "outDir": "lib",
     "declaration": true,
-    "declarationDir": "typings"
+    "declarationDir": "typings",
+    "stripInternal": true
   },
   "include": [
     "./src"

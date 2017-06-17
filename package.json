@@ -18,7 +18,7 @@
   "scripts": {
     "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack",
+    "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack && webpack --env.prod",
     "build:fesm:min": "uglifyjs lib-fesm/index.js --compress --mangle --source-map --output lib-fesm/index.min.js",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest",
@@ -94,6 +94,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "20.0.0",
+    "@types/node": "7.0.31",
     "awesome-typescript-loader": "3.1.3",
     "commitizen": "2.9.6",
     "cross-var": "1.0.3",
@@ -117,6 +118,7 @@
     "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
     "uglifyjs-webpack-plugin": "0.4.3",
     "validate-commit-msg": "2.12.2",
-    "webpack": "3.0.0-rc.2"
+    "webpack": "3.0.0-rc.2",
+    "webpack-config-utils": "2.3.0"
   }
 }

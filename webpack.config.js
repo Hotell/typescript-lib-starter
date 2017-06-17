@@ -1,6 +1,7 @@
 const { resolve } = require('path')
 const webpack = require('webpack')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 
 const packageJSON = require('./package.json')
 const packageName = normalizePackageName(packageJSON.name)
@@ -11,6 +12,9 @@ const PATHS = {
   umd: resolve(__dirname, 'umd'),
   fesm: resolve(__dirname, 'lib-fesm'),
 }
+// https://webpack.js.org/configuration/configuration-types/#exporting-a-function-to-use-env
+// this is equal to 'webpack --env=dev'
+const DEFAULT_ENV = 'dev'
 
 const EXTERNALS = {
   // lodash: {
@@ -24,7 +28,7 @@ const EXTERNALS = {
 const RULES = {
   ts: {
     test: /\.tsx?$/,
-    exclude: /node_modules/,
+    include: /src/,
     use: [
       {
         loader: 'awesome-typescript-loader',
@@ -40,7 +44,7 @@ const RULES = {
   },
   tsNext: {
     test: /\.tsx?$/,
-    exclude: /node_modules/,
+    include: /src/,
     use: [
       {
         loader: 'awesome-typescript-loader',
@@ -52,28 +56,34 @@ const RULES = {
   },
 }
 
-const PLUGINS = [
-  // enable scope hoisting
-  new webpack.optimize.ModuleConcatenationPlugin(),
-  // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
-  new UglifyJSPlugin({
-    sourceMap: true,
-    include: /\.min\.js$/,
-  }),
-  new webpack.LoaderOptionsPlugin({
-    minimize: true,
-  }),
-]
+const config = (env = DEFAULT_ENV) => {
+  const { ifProd, ifNotProd } = getIfUtils(env)
+  const PLUGINS = removeEmpty([
+    // enable scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
+    ifProd(
+      new UglifyJSPlugin({
+        sourceMap: true,
+        include: /\.min\.js$/,
+      })
+    ),
+    new webpack.LoaderOptionsPlugin({
+      debug: false,
+      minimize: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: ifProd('"production"', '"development"') },
+    }),
+  ])
 
-const config = env => {
   const UMDConfig = {
     // These are the entry point of our library. We tell webpack to use
     // the name we assign later, when creating the bundle. We also use
     // the name to filter the second entry point for applying code
     // minification via UglifyJS
     entry: {
-      [packageName]: [PATHS.entryPoint],
-      [`${packageName}.min`]: [PATHS.entryPoint],
+      [ifProd(`${packageName}.min`, packageName)]: [PATHS.entryPoint],
     },
     // The output defines how and where we want the bundles. The special
     // value `[name]` in `filename` tell Webpack to use the name we defined above.
@@ -84,7 +94,7 @@ const config = env => {
       filename: '[name].js',
       libraryTarget: 'umd',
       library: LIB_NAME,
-      // libraryExport:  UMD.libName,
+      // libraryExport:  LIB_NAME,
       // will name the AMD module of the UMD build. Otherwise an anonymous define is used.
       umdNamedDefine: true,
     },
@@ -107,8 +117,7 @@ const config = env => {
 
   const FESMconfig = Object.assign({}, UMDConfig, {
     entry: {
-      index: [PATHS.entryPoint],
-      'index.min': [PATHS.entryPoint],
+      [ifProd('index.min', 'index')]: [PATHS.entryPoint],
     },
     output: {
       path: PATHS.fesm,

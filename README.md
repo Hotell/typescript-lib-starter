@@ -1,5 +1,7 @@
 # Typescript lib starter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Hotell/typescript-lib-starter.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/Hotell/typescript-lib-starter.svg?branch=master)](https://travis-ci.org/Hotell/typescript-lib-starter)
 [![NPM version](https://img.shields.io/npm/v/standard-version.svg)](https://www.npmjs.com/package/typescript-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)

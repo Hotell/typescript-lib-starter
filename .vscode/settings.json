@@ -1,0 +1,13 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "tslint.autoFixOnSave": true,
+  "tslint.enable": true,
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.trailingComma": "es5",
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+  "typescript.referencesCodeLens.enabled": true
+}

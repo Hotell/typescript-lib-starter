@@ -27,13 +27,14 @@
     "test:only-changed": "npm test -- --bail --onlyChanged",
     "ts:lint": "tslint --project tsconfig.json --format codeFrame",
     "ts:lint:fix": "npm run ts:lint -- --fix",
-    "ts:format:base": "prettier --single-quote --print-width 120 --trailing-comma es5 --no-semi --parser typescript {src,__{tests,mocks}__}/**/*.{ts,tsx}",
+    "ts:format:base": "npm run prettier:ts -- {src,__{tests,mocks}__}/**/*.{ts,tsx}",
     "ts:format": "npm run ts:format:base -- --list-different",
     "ts:format:fix": "npm run ts:format:base -- --write",
     "ts:style": "npm run ts:format && npm run ts:lint",
     "ts:style:fix": "npm run ts:format:fix && npm run ts:lint:fix",
     "verify": "npm run ts:style && npm test",
     "cz": "git-cz",
+    "prettier:ts": "prettier --single-quote --print-width 120 --trailing-comma es5 --no-semi --parser typescript",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "npm run ts:style && npm run test:only-changed",
@@ -57,7 +58,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "ts:style:fix",
+      "npm run prettier:ts -- --write",
+      "ts:lint:fix",
       "git add"
     ]
   },

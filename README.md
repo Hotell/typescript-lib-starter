@@ -167,3 +167,16 @@ run `yarn build` then `npm run size`
 - if you are in rush and just wanna skip commit message valiation just prefix your message with `WIP: something done` ( if you do this please squash your work when you're done with proper commit message so standard-version can create Changelog and bump version of your library appropriately )
 
 `yarn cz` - will invoke [commitizen CLI](https://github.com/commitizen/cz-cli)
+
+### Note
+
+#### `import()`
+
+This starter uses latest typescript >=2.4 which adds supprot for lazy loading chunks/modules via `import()`.
+
+Please note that if you wanna use that feature, compiler will complain because declaration generation is turned on, and currently TS
+can't handle type generation with types that will be loaded in the future ( lazily )
+
+How to solve this:
+- turn of type checking and don't generate types for that lazy import: `import('./components/button') as any`
+- or you can use this [temporary workaround](https://github.com/Microsoft/TypeScript/issues/16603#issuecomment-310208259)

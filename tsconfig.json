@@ -5,23 +5,24 @@
     "target": "es5",
     "lib": [
       "dom",
-      "es2015",
-      "es2016",
-      "es2017"
+      "es2018"
     ],
     "strict": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "pretty": true,
     "jsx": "react",
     // change this to any hyperscript like function that you're using
     "jsxFactory": "React.createElement",
     "sourceMap": true,
-    "outDir": "lib",
+    "outDir": "esm5",
     "declaration": true,
-    "declarationDir": "typings",
-    "stripInternal": true
+    "declarationDir": "types",
+    "declarationMap": true,
+    "stripInternal": true,
+    "resolveJsonModule": true,
+    "importHelpers": true
   },
   "include": [
     "./src"

@@ -3,11 +3,11 @@
   "tslint.autoFixOnSave": true,
   "tslint.enable": true,
   "editor.formatOnSave": true,
-  "prettier.printWidth": 120,
-  "prettier.singleQuote": true,
-  "prettier.semi": false,
-  "prettier.trailingComma": "es5",
   "typescript.format.enable": false,
   "javascript.format.enable": false,
-  "typescript.referencesCodeLens.enabled": true
+  "typescript.referencesCodeLens.enabled": true,
+  "javascript.referencesCodeLens.enabled": true,
+  "editor.rulers": [
+    80,100
+  ],
 }

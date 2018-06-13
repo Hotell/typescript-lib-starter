@@ -2,10 +2,11 @@
   "name": "@next-gen/typescript-lib-starter",
   "version": "1.7.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
-  "main": "umd/typescript-lib-starter.js",
-  "module": "lib/index.js",
-  "es2015": "lib-esm/index.js",
-  "typings": "typings/index.d.ts",
+  "main": "bundles/typescript-lib-starter.umd.js",
+  "module": "./esm5/index.js",
+  "es2015": "./esm2015/index.js",
+  "typings": "./types/index.d.ts",
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://www.github.com/Hotell/typescript-lib-starter"
@@ -13,39 +14,36 @@
   "author": "Martin Hochel",
   "license": "MIT",
   "engines": {
-    "node": ">=6.9"
+    "node": ">=8"
   },
   "scripts": {
-    "cleanup": "shx rm -rf umd lib lib-esm lib-fesm typings coverage docs",
+    "cleanup": "shx rm -rf bundles esm5 esm2015 fesm types coverage docs package",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": " tsc && tsc --target es2017 --outDir lib-esm && webpack && webpack --env.prod",
-    "build:fesm:min": "uglifyjs lib-fesm/index.js --compress --mangle --source-map --output lib-fesm/index.min.js",
+    "build": "tsc && tsc --target es2018 --outDir esm2015 && webpack --progress --config config/webpack.config.js && webpack --env.prod --progress --config config/webpack.config.js",
+    "postbuild": "npm run size",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage",
-    "test:only-changed": "npm test -- --bail --onlyChanged",
-    "ts:lint": "tslint --project tsconfig.json --format codeFrame",
-    "ts:lint:fix": "npm run ts:lint -- --fix",
-    "ts:format:base": "npm run prettier:ts -- {src,__{tests,mocks}__}/**/*.{ts,tsx}",
-    "ts:format": "npm run ts:format:base -- --list-different",
-    "ts:format:fix": "npm run ts:format:base -- --write",
-    "ts:style": "npm run ts:format && npm run ts:lint",
-    "ts:style:fix": "npm run ts:format:fix && npm run ts:lint:fix",
-    "verify": "npm run ts:style && npm test",
-    "cz": "git-cz",
-    "prettier:ts": "prettier --single-quote --print-width 120 --trailing-comma es5 --no-semi --parser typescript",
-    "precommit": "lint-staged",
-    "commitmsg": "validate-commit-msg",
-    "prepush": "npm run ts:style && npm run test:only-changed",
+    "test": "jest -c ./config/jest.config.js",
+    "test:watch": "npm t -- --watch",
+    "test:coverage": "npm t -- --coverage",
+    "test:ci": "npm t -- --ci",
+    "validate-config": "tsc -p ./config",
+    "verify": "npm run validate-config && npm run style && npm run test:ci",
+    "commit": "git-cz",
+    "style": "npm run format -- --list-different && npm run lint",
+    "style:fix": "npm run format:fix && npm run lint:fix",
+    "format": "prettier --config config/prettier.config.js \"**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}\"",
+    "format:fix": "npm run format -- --write",
+    "lint": "tslint --project tsconfig.json --format codeFrame",
+    "lint:fix": "npm run lint -- --fix",
     "prerelease": "npm run build",
     "release": "standard-version",
     "postrelease": "npm run release:github && npm run release:npm",
     "release:github": "git push --no-verify --follow-tags origin master",
     "release:npm": "npm publish",
-    "release:preflight": "irish-pub",
-    "release:preflight:package": "npm pack",
-    "size": "shx echo \"Gzipped Size:\" && cross-var strip-json-comments --no-whitespace $npm_package_main | gzip-size"
+    "release:preflight": "npm pack",
+    "size": "npm run size:umd && npm run size:fasm",
+    "size:umd": "shx echo \"Gzipped UMD bundle Size:\" && cross-var strip-json-comments --no-whitespace $npm_package_main | gzip-size",
+    "size:fasm": "shx echo \"Gzipped FESM bundle Size:\" && strip-json-comments --no-whitespace \"./fesm/index.js\" | gzip-size"
   },
   "config": {
     "commitizen": {
@@ -56,71 +54,58 @@
       "maxSubjectLength": 120
     }
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run style && npm test -- --bail --onlyChanged"
+    }
+  },
   "lint-staged": {
+    "**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}": [
+      "prettier --config config/prettier.config.js --write",
+      "git add"
+    ],
     "src/**/*.{ts,tsx}": [
-      "npm run prettier:ts -- --write",
-      "ts:lint:fix",
+      "npm run lint:fix",
       "git add"
     ]
   },
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "mapCoverage": true,
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/lib/",
-      "<rootDir>/lib-esm/",
-      "<rootDir>/umd/",
-      "<rootDir>/src/.*(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 85
-      }
-    }
+  "peerDependencies": {
+    "tslib": ">=1.9.0",
+    "typescript": ">=2.9.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "20.0.2",
-    "@types/node": "7.0.31",
-    "awesome-typescript-loader": "3.2.1",
-    "commitizen": "2.9.6",
-    "cross-var": "1.0.3",
-    "cz-conventional-changelog": "2.0.0",
-    "gzip-size-cli": "2.0.0",
-    "husky": "0.14.1",
-    "irish-pub": "0.2.0",
-    "jest": "20.0.4",
-    "lint-staged": "4.0.0",
-    "prettier": "1.5.2",
-    "shx": "0.2.2",
-    "standard-version": "4.2.0",
+    "@types/jest": "23.0.2",
+    "@types/node": "10.3.2",
+    "@types/prettier": "1.13.1",
+    "@types/uglifyjs-webpack-plugin": "1.1.0",
+    "@types/webpack": "4.4.0",
+    "awesome-typescript-loader": "5.0.0",
+    "commitizen": "2.10.1",
+    "cross-var": "1.1.0",
+    "cz-conventional-changelog": "2.1.0",
+    "gzip-size-cli": "2.1.0",
+    "husky": "1.0.0-rc.8",
+    "jest": "23.1.0",
+    "lint-staged": "7.2.0",
+    "prettier": "1.13.5",
+    "shx": "0.3.0",
+    "standard-version": "4.4.0",
     "strip-json-comments-cli": "1.0.1",
-    "ts-jest": "20.0.6",
-    "tslint": "5.4.3",
-    "tslint-config-prettier": "1.1.0",
-    "tslint-config-standard": "6.0.1",
-    "tslint-react": "3.0.0",
-    "typedoc": "0.7.1",
-    "typescript": "2.4.1",
-    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",
-    "uglifyjs-webpack-plugin": "0.4.5",
-    "validate-commit-msg": "2.12.2",
-    "webpack": "3.0.0",
+    "ts-jest": "22.4.6",
+    "tslib": "1.9.2",
+    "tslint": "5.10.0",
+    "tslint-config-prettier": "1.13.0",
+    "tslint-config-standard": "7.0.0",
+    "tslint-react": "3.6.0",
+    "typedoc": "0.11.1",
+    "typescript": "2.9.1",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "validate-commit-msg": "2.14.0",
+    "webpack": "4.12.0",
+    "webpack-cli": "3.0.4",
     "webpack-config-utils": "2.3.0"
   }
 }

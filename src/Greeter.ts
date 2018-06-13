@@ -7,6 +7,7 @@ export class Greeter {
   }
 
   greetMe() {
+    /* istanbul ignore next line */
     if (IS_DEV) {
       console.warn('this method is deprecated, use #greet instead')
     }

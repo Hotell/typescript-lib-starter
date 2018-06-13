@@ -8,63 +8,96 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-
 This npm library starter:
 
 - creates package for both Node and Browser
-- build creates 3 standard "bundle" formats:
-  - main -> UMD bundle for Node and Browser
-  - module -> transpiled files to ES5 + es2015 modules for tree shaking
-  - es2015 -> raw files transpiled to latest ES standard ( es2017 ) ( this is useful if you wann transpile everthing or just wann ship untranspiled esNext code for evergreen browsers)
-- also we provide experimantal **FESM** bundle thanks to Webpack 3 and scope hoisting -> you can find it in `lib-fesm` folder ( scope hoisting is now enabled also within UMD == smaller payload size )
+- build will creates 4 standard "package" formats:
+  - `umd` 👉 UMD bundle for Node and Browser
+    > `main` field in package.json
+  - `esm5` 👉 transpiled files to ES5 + es2015 modules for tree shaking
+    > `module` field in package.json
+  - `esm2015` 👉 raw javascript files transpiled from typescript to latest ES standard ( es2018 )
+    > `es2015` field in package.json
+    >
+    > this is useful if you wann transpile everything or just wanna ship untranspiled esNext code for evergreen browsers)
+  - `fesm` 👉 experimental bundle type introduced by Angular team ( it bundles all your non transpiled code to one file, although it includes webpack boilerplate for module resolution/rollup does this better )
 - type definitions are automatically generated and shipped with your package
+  - > `types` field in package.json
+- `sideEffects` 👉 [support proper tree-shaking](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) for whole library ( Webpack >= 4). Turn this off or adjust as needed if your modules are not pure!
 
-## Start coding jedi!
+## Start coding in 4 steps !
 
-`git clone https://github.com/Hotell/typescript-lib-starter <your-libary-folder-name>`
+1.  `git clone https://github.com/Hotell/typescript-lib-starter <your-libary-folder-name> && cd $_`
 
-`cd <your-libary-folder-name>`
+2.  `rm -rf .git && git init`
 
-`rm -rf .git && git init`
+3.  in `package.json` reset following fields:
 
-Open `package.json` and reset following fields:
-- name
-- version ( It is recommended to start from 1.0.0 )
-- description
-- main ( "umd/typescript-lib-starter.js" => "umd/{name}.js" )
-- repository.url
-- author
-- license ( use whatever you want )
+```diff
+{
+- "name": "@next-gen/typescript-lib-starter",
++ "name": "{yourLibraryPackageName}",
+- "version": "1.7.0",
++ "version": "1.0.0",
+- "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
++ "description": "What is your library all about",
+- "main": "bundles/typescript-lib-starter.umd.js",
++ "main": "bundles/{yourLibraryPackageName}.umd.js",
+- "author": "Martin Hochel",
++ "author": "{yourName}",
+- "license": "MIT",
++ "license": "{yourLicense}",
+  "repository": {
+    "type": "git",
+-   "url": "https://www.github.com/Hotell/typescript-lib-starter"
++   "url": "https://www.github.com/{yourAccountName}/{yourLibraryPackageName}"
+  }
+}
+```
 
-Now install all dependencies
+4.  Install all dependencies `yarn install`
 
-`yarn install`
-
-Happy coding !
+Happy coding ! 🖖
 
 ## Consumption of published library:
 
-`yarn add my-new-library` or `npm install my-new-library`
+1.  install it 🤖
+
+```sh
+yarn add my-new-library
+# OR
+npm install my-new-library
+```
+
+1.  use it 💪
 
 ### Webpack
 
-```ts
-// main.ts
-import { Greeter } from 'my-new-library';
+> #### NOTE:
+>
+> Don't forget to turn off ES modules tranpspilation to enable tree-shaking!
+>
+> - babel: `{"modules": false}`
+> - typescript: `{"module": "esnext"}`
 
-const mountPoint = document.getElementById('app');
+```ts
+// main.ts or main.js
+import { Greeter } from 'my-new-library'
+
+const mountPoint = document.getElementById('app')
 const App = () => {
-  const greeter = new Greeter('Stranger');
+  const greeter = new Greeter('Stranger')
   return `<h1>${greeter.greet()}</h1>`
 }
 const render = (Root: Function, where: HTMLElement) => {
-  where.innerHTML = Root();
+  where.innerHTML = Root()
 }
 
-render(App, mountPoint);
+render(App, mountPoint)
 ```
 
 ```html
+<!-- index.htm -->
 <html>
   <head>
     <script src="bundle.js" async></script>
@@ -75,13 +108,26 @@ render(App, mountPoint);
 </html>
 ```
 
-### UMD ( no bundler )
+### UMD/ES2015 module aware browsers ( no bundler )
 
 ```html
 <html>
   <head>
-    <script src="node_modules/my-lib/umd/my-new-library.min.js"></script>
-    <script async>
+    <script type="module">
+      import {Greeter} from './node_modules/my-lib/esm2015/index.js'
+
+      const App = () => {
+        const greeter = new Greeter('Stranger');
+        return `<h1>${greeter.greet()}</h1>`
+      }
+      const render = (Root, where) => {
+        where.innerHTML = Root();
+      }
+
+      render(App, mountPoint);
+    </script>
+    <script nomodule src="node_modules/my-lib/bundles/my-new-library.umd.min.js"></script>
+    <script nomodule async>
         var Greeter = MyLib.Greeter;
 
         var App = function() {
@@ -101,56 +147,55 @@ render(App, mountPoint);
 </html>
 ```
 
-## Publishing/Release
+## Publish your library
 
-> NOTE: you have to create npm account and register token on your machine
-> -> `npm adduser`
+> #### NOTE:
 >
-> If you are using scope don't forget to [`--scope`](https://docs.npmjs.com/cli/adduser#scope)
+> you have to create npm account and register token on your machine
+> 👉 `npm adduser`
+>
+> If you are using scope ( you definitely should 👌) don't forget to [`--scope`](https://docs.npmjs.com/cli/adduser#scope)
 
-`yarn release`
+Execute `yarn release` which will handle following tasks:
 
-which will do following:
-- bump version and tag
-- updates/creates CHANGELOG.md
-- pushes to github master branch
-- publishes build package to npm
+- bump package version and git tag
+- update/(create if it doesn't exist) CHANGELOG.md
+- push to github master branch + push tags
+- publish build packages to npm
 
 > releases are handled by awesome [standard-version](https://github.com/conventional-changelog/standard-version)
 
-
 ### Initial Release (without bumping package.json version):
 
-`yarn release -- --first-release`
+`yarn release --first-release`
 
 ### Pre-release
 
 - To get from `1.1.2` to `1.1.2-0`:
 
-`yarn release -- --prerelease`
+`yarn release --prerelease`
 
 - **Alpha**: To get from `1.1.2` to `1.1.2-alpha.0`:
 
-`yarn release -- --prerelease alpha`
+`yarn release --prerelease alpha`
 
 - **Beta**: To get from `1.1.2` to `1.1.2-beta.0`:
 
-`yarn release -- --prerelease beta`
+`yarn release --prerelease beta`
 
 ### Dry run mode
 
 See what commands would be run, without committing to git or updating files
 
-`yarn release -- --dry-run`
+`yarn release --dry-run`
 
-## Check what files gonna be published to npm
+## Check what files are gonna be published to npm
 
-- CLI output via `yarn release:preflight`
-- or `yarn release:preflight:package` will create tarball which you can check
+- `yarn pack` OR `yarn release:preflight` which will create a tarball with everything that would get published to NPM
 
 ## Check size of your published NPM bundle
 
-run `yarn build` then `npm run size`
+`yarn size`
 
 ## Format and fix lint errors
 
@@ -162,21 +207,27 @@ run `yarn build` then `npm run size`
 
 ## Commit ( via commitizen )
 
-- this is preffered way how to create convetional-changelog valid commits
+- this is preferred way how to create convetional-changelog valid commits
 - if you preffer your custom tool we provide a commit hook linter which will error out, it you provide invalid commit message
 - if you are in rush and just wanna skip commit message valiation just prefix your message with `WIP: something done` ( if you do this please squash your work when you're done with proper commit message so standard-version can create Changelog and bump version of your library appropriately )
 
-`yarn cz` - will invoke [commitizen CLI](https://github.com/commitizen/cz-cli)
+`yarn commit` - will invoke [commitizen CLI](https://github.com/commitizen/cz-cli)
 
-### Note
+### Troubleshooting
 
-#### `import()`
+#### dynamic `import()`
 
-This starter uses latest typescript >=2.4 which adds supprot for lazy loading chunks/modules via `import()`.
+This starter uses latest **TypeScript >=2.9** which has support for lazy loading chunks/modules via `import()` and also definition aquisition via [`import('../path-to-module').TypeFoo`](http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types)
 
-Please note that if you wanna use that feature, compiler will complain because declaration generation is turned on, and currently TS
-can't handle type generation with types that will be loaded in the future ( lazily )
+Before TS 2.9, it wasn't possible to properly generate ambient definitions if you used dynamic `import()`. This works now as expected without any hacks ❤️ !
 
-How to solve this:
-- turn of type checking and don't generate types for that lazy import: `import('./components/button') as any`
-- or you can use this [temporary workaround](https://github.com/Microsoft/TypeScript/issues/16603#issuecomment-310208259)
+---
+
+> ### Before TS 2.9
+>
+> Please note that if you wanna use that feature, compiler will complain because declaration generation is turned on, and currently TS can't handle type generation with types that will be loaded in the future ( lazily )
+>
+> **How to solve this:**
+>
+> - turn of type checking and don't generate types for that lazy import: `import('./components/button') as any`
+> - or you can use this [temporary workaround](https://github.com/Microsoft/TypeScript/issues/16603#issuecomment-310208259)

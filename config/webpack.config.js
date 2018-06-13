@@ -1,30 +1,57 @@
+// @ts-check
 const { resolve } = require('path')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const { getIfUtils, removeEmpty } = require('webpack-config-utils')
 
-const packageJSON = require('./package.json')
+const packageJSON = require('../package.json')
 const packageName = normalizePackageName(packageJSON.name)
 
-const LIB_NAME = pascalCase(packageName)
-const PATHS = {
-  entryPoint: resolve(__dirname, 'src/index.ts'),
-  umd: resolve(__dirname, 'umd'),
-  fesm: resolve(__dirname, 'lib-fesm'),
-}
-// https://webpack.js.org/configuration/configuration-types/#exporting-a-function-to-use-env
-// this is equal to 'webpack --env=dev'
-const DEFAULT_ENV = 'dev'
+/**
+ * @typedef {import('webpack').Configuration} WebpackConfig
+ */
+/**
+ * @typedef {import('webpack').Rule} WebpackRule
+ */
+/**
+ * @typedef {import('webpack').Plugin} WebpackPlugin
+ */
+/**
+ * @typedef {import('webpack').ExternalsElement} WebpackExternals
+ */
+/**
+ * @typedef {{dev:boolean} | {prod:boolean}} Env
+ */
 
+const LIB_NAME = pascalCase(packageName)
+const ROOT = resolve(__dirname, '..')
+const PATHS = {
+  entry: resolve(ROOT, 'src/index.ts'),
+  umd: resolve(ROOT, 'bundles'),
+  fesm: resolve(ROOT, 'fesm'),
+}
+/**
+ * @type {Pick<Env,'dev'>}
+ * https://webpack.js.org/configuration/configuration-types/#exporting-a-function-to-use-env
+ * this is equal to 'webpack --env.dev'
+ */
+const DEFAULT_ENV = { dev: true }
+
+/**
+ * @type {WebpackExternals}
+ */
 const EXTERNALS = {
   // lodash: {
-  //   commonjs: "lodash",
-  //   commonjs2: "lodash",
-  //   amd: "lodash",
-  //   root: "_"
-  // }
+  //   commonjs: 'lodash',
+  //   commonjs2: 'lodash',
+  //   amd: 'lodash',
+  //   root: '_',
+  // },
 }
 
+/**
+ * @type {{[key:string]: WebpackRule}}
+ */
 const RULES = {
   ts: {
     test: /\.tsx?$/,
@@ -49,27 +76,36 @@ const RULES = {
       {
         loader: 'awesome-typescript-loader',
         options: {
-          target: 'es2017',
+          target: 'es2018',
         },
       },
     ],
   },
 }
 
+/**
+ *
+ * @param {Env} env
+ * @returns {[WebpackConfig,WebpackConfig]}
+ */
 const config = (env = DEFAULT_ENV) => {
   const { ifProd, ifNotProd } = getIfUtils(env)
+  /**
+   * @type {WebpackConfig['mode']}
+   */
+  const mode = ifProd('production', 'development')
+  /**
+   * @type {WebpackPlugin[]}
+   */
   const PLUGINS = removeEmpty([
-    // enable scope hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
     // Apply minification only on the second bundle by using a RegEx on the name, which must end with `.min.js`
     ifProd(
       new UglifyJsPlugin({
         sourceMap: true,
-        compress: {
-          screw_ie8: true,
+        uglifyOptions: {
           warnings: false,
+          output: { comments: false },
         },
-        output: { comments: false },
       })
     ),
     new webpack.LoaderOptionsPlugin({
@@ -81,13 +117,16 @@ const config = (env = DEFAULT_ENV) => {
     }),
   ])
 
+  /**
+   * @type {import('./types').WebpackConfig}
+   */
   const UMDConfig = {
     // These are the entry point of our library. We tell webpack to use
     // the name we assign later, when creating the bundle. We also use
     // the name to filter the second entry point for applying code
     // minification via UglifyJS
     entry: {
-      [ifProd(`${packageName}.min`, packageName)]: [PATHS.entryPoint],
+      [ifProd(`${packageName}.min`, packageName)]: [PATHS.entry],
     },
     // The output defines how and where we want the bundles. The special
     // value `[name]` in `filename` tell Webpack to use the name we defined above.
@@ -95,7 +134,7 @@ const config = (env = DEFAULT_ENV) => {
     // it will be accessible at `window.MyLib`
     output: {
       path: PATHS.umd,
-      filename: '[name].js',
+      filename: '[name].umd.js',
       libraryTarget: 'umd',
       library: LIB_NAME,
       // libraryExport:  LIB_NAME,
@@ -113,24 +152,36 @@ const config = (env = DEFAULT_ENV) => {
     // Activate source maps for the bundles in order to preserve the original
     // source when the user debugs the application
     devtool: 'source-map',
+    mode,
+    performance: {
+      hints: 'warning',
+    },
+    stats: 'minimal',
     plugins: PLUGINS,
     module: {
       rules: [RULES.ts],
     },
   }
 
-  const FESMconfig = Object.assign({}, UMDConfig, {
-    entry: {
-      [ifProd('index.min', 'index')]: [PATHS.entryPoint],
-    },
-    output: {
-      path: PATHS.fesm,
-      filename: UMDConfig.output.filename,
-    },
-    module: {
-      rules: [RULES.tsNext],
-    },
-  })
+  /**
+   * @type {WebpackConfig}
+   */
+  const FESMconfig = Object.assign(
+    {},
+    UMDConfig,
+    /**@type {WebpackConfig}*/ ({
+      entry: {
+        [ifProd('index.min', 'index')]: [PATHS.entry],
+      },
+      output: {
+        path: PATHS.fesm,
+        filename: '[name].js',
+      },
+      module: {
+        rules: [RULES.tsNext],
+      },
+    })
+  )
 
   return [UMDConfig, FESMconfig]
 }
@@ -139,22 +190,42 @@ module.exports = config
 
 // helpers
 
+/**
+ *
+ * @param {string} myStr
+ */
 function camelCaseToDash(myStr) {
   return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
+/**
+ *
+ * @param {string} myStr
+ */
 function dashToCamelCase(myStr) {
-  return myStr.replace(/-([a-z])/g, g => g[1].toUpperCase())
+  return myStr.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
 }
 
+/**
+ *
+ * @param {string} myStr
+ */
 function toUpperCase(myStr) {
   return `${myStr.charAt(0).toUpperCase()}${myStr.substr(1)}`
 }
 
+/**
+ *
+ * @param {string} myStr
+ */
 function pascalCase(myStr) {
   return toUpperCase(dashToCamelCase(myStr))
 }
 
+/**
+ *
+ * @param {string} rawPackageName
+ */
 function normalizePackageName(rawPackageName) {
   const scopeEnd = rawPackageName.indexOf('/') + 1
 

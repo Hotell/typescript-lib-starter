@@ -10,17 +10,13 @@ const tsJestConfig = {
 }
 
 /**
- * @type {Partial<jest.ProjectConfig & jest.GlobalConfig>}
+ * @type {Partial<jest.InitialOptions>}
  */
 const config = {
   rootDir: '..',
-  /**
-   * @FIXME jest typings are bad, so we need to turn it off -> PR
-   * https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26304
-   */
-  transform: /** @type {any} */ ({
+  transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
-  }),
+  },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
@@ -29,9 +25,6 @@ const config = {
   globals: {
     'ts-jest': tsJestConfig,
   },
-  /**
-   * @FIXME coverageThreshold is missing from `jest.ProjectConfig` but is within `jest.GlobalConfig` -> PR
-   */
   coverageThreshold: {
     global: {
       branches: 80,

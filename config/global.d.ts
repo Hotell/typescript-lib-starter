@@ -1,5 +1,5 @@
 declare module 'jest-config' {
-  const defaults: jest.ProjectConfig & jest.GlobalConfig
+  const defaults: jest.DefaultOptions
 }
 
 declare module 'webpack-config-utils' {

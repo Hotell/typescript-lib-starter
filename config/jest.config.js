@@ -33,6 +33,10 @@ const config = {
       statements: 80,
     },
   },
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 }
 
 module.exports = config

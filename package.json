@@ -1,6 +1,6 @@
 {
   "name": "@next-gen/typescript-lib-starter",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
   "main": "bundles/typescript-lib-starter.umd.js",
   "module": "./esm5/index.js",

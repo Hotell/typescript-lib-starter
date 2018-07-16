@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+
+# [2.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.7.0...v2.0.0) (2018-07-16)
+
+### Bug Fixes
+
+- **lint:** remove rules clashing with prettier ([40e1116](https://www.github.com/Hotell/typescript-lib-starter/commit/40e1116))
+- **precommit:** properly call prettier ([9d14f0f](https://www.github.com/Hotell/typescript-lib-starter/commit/9d14f0f))
+
+### Features
+
+- revamp whole starter and make it up to date (#46) ([2b8e74f](https://www.github.com/Hotell/typescript-lib-starter/commit/2b8e74f))
+- **test:** add jest-typeahead ([6659ff6](https://www.github.com/Hotell/typescript-lib-starter/commit/6659ff6))
+- **tsc:** enable esnext modules for import() support ([d0261c4](https://www.github.com/Hotell/typescript-lib-starter/commit/d0261c4))
+- **vscode:** add vscode settings nad recommendet plugins ([0f5fc80](https://www.github.com/Hotell/typescript-lib-starter/commit/0f5fc80))
+
+### BREAKING CHANGES
+
+- Before all tooling config used to be in root, now it's within config/ folder which
+  is typecheked and provides intellisense -> better DX. With this all npm-script tasks are provided
+  with --config flag to resolve it properly.
+
 <a name="1.7.0"></a>
 
 # [1.7.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.6.0...v1.7.0) (2017-06-17)

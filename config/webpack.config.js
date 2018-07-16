@@ -38,9 +38,11 @@ const PATHS = {
 const DEFAULT_ENV = { dev: true }
 
 /**
- * @type {WebpackExternals}
+ * @type {WebpackExternals | WebpackExternals[]}
  */
+// const EXTERNALS = ['react','react-dom', 'lodash']
 const EXTERNALS = {
+  // react: 'react'
   // lodash: {
   //   commonjs: 'lodash',
   //   commonjs2: 'lodash',

@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+
+# [3.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v2.0.0...v3.0.0) (2018-07-23)
+
+### Bug Fixes
+
+- **build:** don't compile test files ([221c277](https://www.github.com/Hotell/typescript-lib-starter/commit/221c277))
+- **build:** remove ts from peer dependencies ([3ef99d4](https://www.github.com/Hotell/typescript-lib-starter/commit/3ef99d4))
+- **config:** improve externals config type ([dd4026e](https://www.github.com/Hotell/typescript-lib-starter/commit/dd4026e))
+
+### Features
+
+- add default License as MIT ([5711237](https://www.github.com/Hotell/typescript-lib-starter/commit/5711237))
+- **build:** build package files to dist/ (#70) ([cc5cb78](https://www.github.com/Hotell/typescript-lib-starter/commit/cc5cb78))
+- **test:** add setup-tests file for jest ([6c4a822](https://www.github.com/Hotell/typescript-lib-starter/commit/6c4a822))
+
+### BREAKING CHANGES
+
+- **build:** **Before:**
+
+when releasing a package all distribution files were produced on root of the project which clobers working tree and makes you constatnly update gitignore and npmignore and cleanup npm script if you wanna change anything. That was rather cumbersome.
+
+**After:**
+Now package files are created and moved to dist/ folder with tweaked package.json which removes all unnecessary metadata information and keeps only what is important for cunsumer ( author infor, git repo, dependencies and peerDependencies ).
+
+During release npm script will 'cd dist' and from there it executes npm publish.
+
 <a name="2.0.0"></a>
 
 # [2.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v1.7.0...v2.0.0) (2018-07-16)

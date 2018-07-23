@@ -16,9 +16,9 @@
     // change this to any hyperscript like function that you're using
     "jsxFactory": "React.createElement",
     "sourceMap": true,
-    "outDir": "esm5",
+    "outDir": "dist/esm5",
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "declarationMap": true,
     "stripInternal": true,
     "resolveJsonModule": true,

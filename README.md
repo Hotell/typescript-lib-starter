@@ -19,7 +19,7 @@ This npm library starter:
   - `esm2015` 👉 raw javascript files transpiled from typescript to latest ES standard ( es2018 )
     > `es2015` field in package.json
     >
-    > this is useful if you wann transpile everything or just wanna ship untranspiled esNext code for evergreen browsers)
+    > this is useful if you wanna transpile everything or just wanna ship untranspiled esNext code for evergreen browsers)
   - `fesm` 👉 experimental bundle type introduced by Angular team ( it bundles all your non transpiled code to one file, although it includes webpack boilerplate for module resolution/rollup does this better )
 - type definitions are automatically generated and shipped with your package
   - > `types` field in package.json
@@ -75,7 +75,7 @@ npm install my-new-library
 
 > #### NOTE:
 >
-> Don't forget to turn off ES modules tranpspilation to enable tree-shaking!
+> Don't forget to turn off ES modules transpilation to enable tree-shaking!
 >
 > - babel: `{"modules": false}`
 > - typescript: `{"module": "esnext"}`
@@ -163,6 +163,10 @@ Execute `yarn release` which will handle following tasks:
 - push to github master branch + push tags
 - publish build packages to npm
 
+> **NOTE:**
+>
+> all package files are gonna be within `/dist` folder from where `npm publish` will be executed
+
 > releases are handled by awesome [standard-version](https://github.com/conventional-changelog/standard-version)
 
 ### Initial Release (without bumping package.json version):
@@ -191,7 +195,7 @@ See what commands would be run, without committing to git or updating files
 
 ## Check what files are gonna be published to npm
 
-- `yarn pack` OR `yarn release:preflight` which will create a tarball with everything that would get published to NPM
+- `cd dist && yarn pack` OR `yarn release:preflight` which will create a tarball with everything that would get published to NPM
 
 ## Check size of your published NPM bundle
 
@@ -207,9 +211,9 @@ See what commands would be run, without committing to git or updating files
 
 ## Commit ( via commitizen )
 
-- this is preferred way how to create convetional-changelog valid commits
-- if you preffer your custom tool we provide a commit hook linter which will error out, it you provide invalid commit message
-- if you are in rush and just wanna skip commit message valiation just prefix your message with `WIP: something done` ( if you do this please squash your work when you're done with proper commit message so standard-version can create Changelog and bump version of your library appropriately )
+- this is preferred way how to create conventional-changelog valid commits
+- if you prefer your custom tool we provide a commit hook linter which will error out, it you provide invalid commit message
+- if you are in rush and just wanna skip commit message validation just prefix your message with `WIP: something done` ( if you do this please squash your work when you're done with proper commit message so standard-version can create Changelog and bump version of your library appropriately )
 
 `yarn commit` - will invoke [commitizen CLI](https://github.com/commitizen/cz-cli)
 
@@ -217,7 +221,7 @@ See what commands would be run, without committing to git or updating files
 
 #### dynamic `import()`
 
-This starter uses latest **TypeScript >=2.9** which has support for lazy loading chunks/modules via `import()` and also definition aquisition via [`import('../path-to-module').TypeFoo`](http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types)
+This starter uses latest **TypeScript >=2.9** which has support for lazy loading chunks/modules via `import()` and also definition acquisition via [`import('../path-to-module').TypeFoo`](http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types)
 
 Before TS 2.9, it wasn't possible to properly generate ambient definitions if you used dynamic `import()`. This works now as expected without any hacks ❤️ !
 

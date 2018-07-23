@@ -5,7 +5,7 @@ _If there is a linked issue, mention it here._
 
 ## Requirements
 
-- [ ] Read the [contribution guidelines](./CONTRIBUTING.md).
+- [ ] Read the [contribution guidelines](./.github/CONTRIBUTING.md).
 - [ ] Wrote tests.
 - [ ] Updated docs and upgrade instructions, if necessary.
 

@@ -76,11 +76,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "23.1.6",
+    "@types/jest": "23.3.0",
     "@types/node": "10.5.2",
-    "@types/prettier": "1.13.1",
+    "@types/prettier": "1.13.2",
     "@types/uglifyjs-webpack-plugin": "1.1.0",
-    "@types/webpack": "4.4.6",
+    "@types/webpack": "4.4.7",
     "awesome-typescript-loader": "5.2.0",
     "commitizen": "2.10.1",
     "cross-var": "1.1.0",
@@ -94,10 +94,10 @@
     "shx": "0.3.2",
     "standard-version": "4.4.0",
     "strip-json-comments-cli": "1.0.1",
-    "ts-jest": "22.4.6",
+    "ts-jest": "23.0.1",
     "tslib": "1.9.3",
-    "tslint": "5.10.0",
-    "tslint-config-prettier": "1.13.0",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.14.0",
     "tslint-config-standard": "7.1.0",
     "tslint-react": "3.6.0",
     "typedoc": "0.11.1",
@@ -105,7 +105,7 @@
     "uglifyjs-webpack-plugin": "1.2.7",
     "validate-commit-msg": "2.14.0",
     "webpack": "4.16.1",
-    "webpack-cli": "3.0.8",
+    "webpack-cli": "3.1.0",
     "webpack-config-utils": "2.3.0"
   }
 }

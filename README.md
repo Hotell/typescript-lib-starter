@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/Hotell/typescript-lib-starter.svg?branch=master)](https://travis-ci.org/Hotell/typescript-lib-starter)
 [![NPM version](https://img.shields.io/npm/v/%40martin_hotell%2Ftypescript-lib-starter.svg)](https://www.npmjs.com/package/@martin_hotell/typescript-lib-starter)
+[![npm](https://img.shields.io/npm/dm/localeval.svg)](@martin_hotell/typescript-lib-starter)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)

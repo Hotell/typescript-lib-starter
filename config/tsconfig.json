@@ -5,6 +5,8 @@
     "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "resolveJsonModule":true,
     "noEmit": true,
     "skipLibCheck": true

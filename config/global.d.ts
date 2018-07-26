@@ -2,6 +2,35 @@ declare module 'jest-config' {
   const defaults: jest.DefaultOptions
 }
 
+type RollupPluginFn<O extends object = {}> = (
+  options?: O
+) => import('rollup').Plugin
+
+declare module 'rollup-plugin-sourcemaps' {
+  const plugin: RollupPluginFn
+  export default plugin
+}
+declare module 'rollup-plugin-node-resolve' {
+  const plugin: RollupPluginFn
+  export default plugin
+}
+declare module 'rollup-plugin-commonjs' {
+  const plugin: RollupPluginFn
+  export default plugin
+}
+declare module 'rollup-plugin-replace' {
+  const plugin: RollupPluginFn
+  export default plugin
+}
+declare module 'rollup-plugin-uglify' {
+  const uglify: RollupPluginFn
+  export { uglify }
+}
+declare module 'rollup-plugin-terser' {
+  const terser: RollupPluginFn
+  export { terser }
+}
+
 declare module 'webpack-config-utils' {
   namespace WebpackConfigUtils {
     type RemoveEmpty = <T extends object | any[]>(input: T) => T

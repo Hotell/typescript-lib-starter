@@ -1,4 +1,4 @@
-// @ts-check
+import { resolve } from 'path'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import json from 'rollup-plugin-json'
@@ -6,7 +6,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import replace from 'rollup-plugin-replace'
 import { uglify } from 'rollup-plugin-uglify'
 import { terser } from 'rollup-plugin-terser'
-const { removeEmpty } = require('webpack-config-utils')
+import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 
 import pkg from '../package.json'
 const {
@@ -16,25 +16,39 @@ const {
 } = require('./helpers')
 
 /**
- * @typedef {import('rollup').InputOptions & { output: import('rollup').OutputOptions | Array<import('rollup').OutputOptions | null> }} Config
+ * @typedef {import('./types').RollupConfig} Config
  */
-
 /**
- * @typedef {import('rollup').Plugin} RollupPlugin
+ * @typedef {import('./types').RollupPlugin} Plugin
  */
 
 const env = process.env.NODE_ENV || 'development'
-const isProd = env === 'production'
+const { ifProduction } = getIfUtils(env)
+
+const LIB_NAME = pascalCase(normalizePackageName(pkg.name))
+const ROOT = resolve(__dirname, '..')
+const DIST = resolve(ROOT, 'dist')
+
+/**
+ * @type {{entry:{esm5: string, esm2015: string},bundles:string}}
+ */
+const PATHS = {
+  entry: {
+    esm5: resolve(DIST, 'esm5'),
+    esm2015: resolve(DIST, 'esm2015'),
+  },
+  bundles: resolve(DIST, 'bundles'),
+}
 
 /**
  * @type {string[]}
  */
-const external = Object.keys(pkg.peerDependencies)
+const external = Object.keys(pkg.peerDependencies) || []
 
 /**
- *  @type {RollupPlugin[]}
+ *  @type {Plugin[]}
  */
-const plugins = /** @type {RollupPlugin[]} */ ([
+const plugins = /** @type {Plugin[]} */ ([
   // Allow json resolution
   json(),
 
@@ -72,18 +86,20 @@ const CommonConfig = {
  */
 const UMDconfig = {
   ...CommonConfig,
-  input: 'dist/esm5/index.js',
-  output: [
-    {
-      file: getOutputFileName('dist/bundles/index.umd.js', isProd),
-      format: 'umd',
-      name: pascalCase(normalizePackageName(pkg.name)),
-      sourcemap: true,
-    },
-  ],
-  plugins: /** @type {RollupPlugin[]} */ (removeEmpty([
+  input: resolve(PATHS.entry.esm5, 'index.js'),
+  output: {
+    file: getOutputFileName(
+      resolve(PATHS.bundles, 'index.umd.js'),
+      ifProduction()
+    ),
+    // file: getOutputFileName('dist/bundles/index.umd.js', ifProduction()),
+    format: 'umd',
+    name: LIB_NAME,
+    sourcemap: true,
+  },
+  plugins: /** @type {Plugin[]} */ (removeEmpty([
     ...plugins,
-    isProd ? uglify() : void 0,
+    ifProduction(uglify()),
   ])),
 }
 
@@ -92,17 +108,20 @@ const UMDconfig = {
  */
 const FESMconfig = {
   ...CommonConfig,
-  input: 'dist/esm2015/index.js',
+  input: resolve(PATHS.entry.esm2015, 'index.js'),
   output: [
     {
-      file: getOutputFileName('dist/bundles/index.es.js', isProd),
+      file: getOutputFileName(
+        resolve(PATHS.bundles, 'index.esm.js'),
+        ifProduction()
+      ),
       format: 'es',
       sourcemap: true,
     },
   ],
-  plugins: /** @type {RollupPlugin[]} */ (removeEmpty([
+  plugins: /** @type {Plugin[]} */ (removeEmpty([
     ...plugins,
-    isProd ? terser() : void 0,
+    ifProduction(terser()),
   ])),
 }
 

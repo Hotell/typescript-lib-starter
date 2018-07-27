@@ -2,7 +2,7 @@
   "name": "@martin_hotell/typescript-lib-starter",
   "version": "3.0.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
-  "main": "bundles/typescript-lib-starter.umd.js",
+  "main": "bundles/index.umd.js",
   "module": "./esm5/index.js",
   "es2015": "./esm2015/index.js",
   "typings": "./types/index.d.ts",
@@ -14,13 +14,13 @@
   "author": "Martin Hochel",
   "license": "MIT",
   "engines": {
-    "node": ">=8"
+    "node": ">=8.5"
   },
   "scripts": {
     "cleanup": "shx rm -rf dist",
     "prebuild": "npm run cleanup && npm run verify",
-    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && webpack --progress --config config/webpack.config.js && webpack --env.prod --progress --config config/webpack.config.js",
-    "postbuild": "rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production && node scripts/copy.js && npm run size",
+    "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
+    "postbuild": "node scripts/copy.js && npm run size",
     "docs": "typedoc -p . --theme minimal --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest -c ./config/jest.config.js",
     "test:watch": "npm t -- --watch",
@@ -41,9 +41,9 @@
     "release:github": "git push --no-verify --follow-tags origin master",
     "release:npm": "cd dist && npm publish",
     "release:preflight": "cd dist && npm pack",
-    "size": "npm run size:umd && npm run size:fasm",
-    "size:umd": "shx echo \"Gzipped UMD bundle Size:\" && cross-var strip-json-comments --no-whitespace dist/$npm_package_main | gzip-size",
-    "size:fasm": "shx echo \"Gzipped FESM bundle Size:\" && strip-json-comments --no-whitespace \"./dist/fesm/index.js\" | gzip-size"
+    "size": "npm run size:umd && npm run size:fesm",
+    "size:umd": "shx echo \"Gzipped+minified UMD bundle Size:\" && cross-var strip-json-comments --no-whitespace \"./dist/bundles/index.umd.min.js\" | gzip-size",
+    "size:fesm": "shx echo \"Gzipped+minified FESM bundle Size:\" && strip-json-comments --no-whitespace \"./dist/bundles/index.esm.min.js\" | gzip-size"
   },
   "config": {
     "commitizen": {
@@ -80,9 +80,7 @@
     "@types/jest": "23.3.0",
     "@types/node": "10.5.2",
     "@types/prettier": "1.13.2",
-    "@types/rollup-plugin-json": "2.3.1",
-    "@types/uglifyjs-webpack-plugin": "1.1.0",
-    "@types/webpack": "4.4.7",
+    "@types/webpack-config-utils": "2.3.0",
     "awesome-typescript-loader": "5.2.0",
     "commitizen": "2.10.1",
     "cross-var": "1.1.0",
@@ -112,10 +110,7 @@
     "tslint-react": "3.6.0",
     "typedoc": "0.11.1",
     "typescript": "2.9.2",
-    "uglifyjs-webpack-plugin": "1.2.7",
     "validate-commit-msg": "2.14.0",
-    "webpack": "4.16.1",
-    "webpack-cli": "3.1.0",
     "webpack-config-utils": "2.3.0"
   }
 }

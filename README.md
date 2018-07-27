@@ -21,7 +21,7 @@ This npm library starter:
     > `es2015` field in package.json
     >
     > this is useful if you wanna transpile everything or just wanna ship untranspiled esNext code for evergreen browsers)
-  - `fesm` 👉 experimental bundle type introduced by Angular team ( it bundles all your non transpiled code to one file, although it includes webpack boilerplate for module resolution/rollup does this better )
+  - `fesm` 👉 experimental bundle type introduced by Angular team (TL;DR: it's an es2015 flattened bundle, like UMD but with latest ECMAscript and JS modules)
 - type definitions are automatically generated and shipped with your package
   - > `types` field in package.json
 - `sideEffects` 👉 [support proper tree-shaking](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) for whole library ( Webpack >= 4). Turn this off or adjust as needed if your modules are not pure!
@@ -42,8 +42,6 @@ This npm library starter:
 + "version": "1.0.0",
 - "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
 + "description": "What is your library all about...",
-- "main": "bundles/typescript-lib-starter.umd.js",
-+ "main": "bundles/{yourLibraryPackageName}.umd.js",
 - "author": "Martin Hochel",
 + "author": "{yourName}",
 - "license": "MIT",

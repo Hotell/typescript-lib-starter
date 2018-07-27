@@ -1,5 +1,3 @@
-// @ts-check
-
 // helpers
 module.exports = {
   camelCaseToDash,

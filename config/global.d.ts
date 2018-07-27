@@ -1,3 +1,8 @@
+// ts-jest types require 'babel-core'
+declare module 'babel-core' {
+  interface TransformOptions {}
+}
+
 declare module 'jest-config' {
   const defaults: jest.DefaultOptions
 }
@@ -6,6 +11,27 @@ type RollupPluginFn<O extends object = {}> = (
   options?: O
 ) => import('rollup').Plugin
 
+declare module 'rollup-plugin-json' {
+  export interface Options {
+    /**
+     *  All JSON files will be parsed by default, but you can also specifically include/exclude files
+     */
+    include?: string | string[]
+    exclude?: string | string[]
+    /**
+     *  for tree-shaking, properties will be declared as variables, using either `var` or `const`
+     *  @default false
+     */
+    preferConst?: boolean
+    /**
+     * specify indentation for the generated default export — defaults to '\t'
+     * @default '\t'
+     */
+    indent?: string
+  }
+  const plugin: RollupPluginFn<Options>
+  export default plugin
+}
 declare module 'rollup-plugin-sourcemaps' {
   const plugin: RollupPluginFn
   export default plugin
@@ -29,33 +55,4 @@ declare module 'rollup-plugin-uglify' {
 declare module 'rollup-plugin-terser' {
   const terser: RollupPluginFn
   export { terser }
-}
-
-declare module 'webpack-config-utils' {
-  namespace WebpackConfigUtils {
-    type RemoveEmpty = <T extends object | any[]>(input: T) => T
-    type GetIfUtils = (env: object | string, vars?: any[]) => IfUtils
-    type PropIf = <A, I, E>(add: A, value: I, alternate: E) => I | E
-    type PropIfNot = PropIf
-    // type IfUtilsFn = <Y, N>(value?: Y, alternate?: N) => Y | N
-    interface IfUtilsFn {
-      <Y, N>(value: Y, alternate?: N): Y | N
-      (): boolean
-    }
-    interface IfUtils {
-      ifDevelopment: IfUtilsFn
-      ifNotDevelopment: IfUtilsFn
-      ifDev: IfUtilsFn
-      ifNotDev: IfUtilsFn
-      ifProduction: IfUtilsFn
-      ifNotProduction: IfUtilsFn
-      ifProd: IfUtilsFn
-      ifNotProd: IfUtilsFn
-      ifTest: IfUtilsFn
-      ifNotTest: IfUtilsFn
-    }
-  }
-
-  export const getIfUtils: WebpackConfigUtils.GetIfUtils
-  export const removeEmpty: WebpackConfigUtils.RemoveEmpty
 }

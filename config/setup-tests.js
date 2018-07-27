@@ -1,5 +1,3 @@
-// @ts-check
-
 // add here any code that you wanna execute before tests like
 // - polyfills
 // - some custom code

@@ -11,7 +11,7 @@ This library uses following libraries for development:
 - [typescript](http://www.typescriptlang.org/) for typed JavaScript and transpilation
 - [jest](https://jestjs.io/) for unit testing
   - run `yarn test:watch` during development
-- [webpack](https://webpack.js.org/) for creating UMD bundles
+- [rollup](https://rollupjs.org/guide/en) for creating UMD bundles
 - [yarn](https://yarnpkg.com/lang/en/) for package management
 - [npm scripts](https://docs.npmjs.com/misc/scripts) for executing tasks
 

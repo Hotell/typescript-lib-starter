@@ -7,6 +7,14 @@ declare module 'jest-config' {
   const defaults: jest.DefaultOptions
 }
 
+declare module 'sort-object-keys' {
+  const sortPackageJson: <T extends {}>(
+    object: T,
+    sortWith?: (...args: any[]) => any
+  ) => T
+  export = sortPackageJson
+}
+
 type RollupPluginFn<O extends object = {}> = (
   options?: O
 ) => import('rollup').Plugin

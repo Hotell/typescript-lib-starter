@@ -1,4 +1,3 @@
-// @ts-check
 const { writeFileSync, copyFileSync } = require('fs')
 const { resolve } = require('path')
 const packageJson = require('../package.json')

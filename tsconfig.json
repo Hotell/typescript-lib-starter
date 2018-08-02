@@ -29,9 +29,7 @@
   ],
   "exclude": [
     "node_modules",
-    "__tests__",
-    "**/*.spec.ts",
-    "**/*.test.ts"
+    "dist"
   ],
   "compileOnSave": false,
   "buildOnSave": false

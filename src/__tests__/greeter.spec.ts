@@ -3,7 +3,7 @@ jest.mock('../environment.ts', () => ({
   IS_PROD: false,
 }))
 
-import { Greeter } from '../Greeter'
+import { Greeter } from '../greeter'
 
 describe(`Greeter`, () => {
   let greeter: Greeter

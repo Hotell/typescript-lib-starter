@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+
+# [4.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v3.0.0...v4.0.0) (2018-08-14)
+
+### Bug Fixes
+
+- **npm-scripts:** copy updated files after build>standard-version during release ([7146b15](https://www.github.com/Hotell/typescript-lib-starter/commit/7146b15))
+- **ts:** remove test files from exclude field ([da65fa0](https://www.github.com/Hotell/typescript-lib-starter/commit/da65fa0))
+
+### Features
+
+- **build:** add rollup ([0674dea](https://www.github.com/Hotell/typescript-lib-starter/commit/0674dea))
+- **build:** ditch webpack and use rollup for bundling ([0326a0e](https://www.github.com/Hotell/typescript-lib-starter/commit/0326a0e))
+- **scripts:** provide migration script from v3 to v4 ([c6c5b75](https://www.github.com/Hotell/typescript-lib-starter/commit/c6c5b75))
+
+### BREAKING CHANGES
+
+- **build:** Webpack is not used anymore for bundling. Long live Rollup !
+
 <a name="3.0.0"></a>
 
 # [3.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v2.0.0...v3.0.0) (2018-07-23)

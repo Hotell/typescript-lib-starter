@@ -1,6 +1,7 @@
 *.log
 .idea
 .DS_Store
+.cache
 node_modules
 
 coverage

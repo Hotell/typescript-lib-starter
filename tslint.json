@@ -1,96 +1,90 @@
 {
   "extends": [
+    "tslint:recommended",
     "tslint-config-standard",
+    "tslint-etc",
     "tslint-react",
     "tslint-config-prettier"
   ],
   "rules": {
-    // tslint-react rules
-    "jsx-no-lambda": true,
-    "jsx-no-string-ref": true,
-    "jsx-self-close": true,
-    "jsx-boolean-value": [
-      true,
-      "never"
-    ],
-    // core ts-lint rules
-    "await-promise": true,
-    "no-unused-variable": true,
-    "forin": true,
-    "no-bitwise": true,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-construct": true,
-    "no-debugger": true,
-    "no-shadowed-variable": true,
-    "no-string-literal": true,
-    "no-inferrable-types": [
-      true
-    ],
-    "no-unnecessary-initializer": true,
+    // types related rules
+    "no-inferrable-types": true,
+    "no-namespace": {
+      "options": [
+        "allow-declarations"
+      ]
+    },
+    "interface-name": {
+      "options": "never-prefix"
+    },
+    "no-unsafe-any": true,
+    // core lint rules
+    "ban": {
+      "options": [
+        {
+          "name": "parseInt",
+          "message": "use #type-coercion -> Number(val)"
+        },
+        {
+          "name": "parseFloat",
+          "message": "use #type-coercion -> Number(val)"
+        },
+        {
+          "name": "Array",
+          "message": "use #array-constructor"
+        },
+        {
+          "name": [
+            "describe",
+            "only"
+          ],
+          "message": "don't focus spec blocks"
+        },
+        {
+          "name": [
+            "it",
+            "only"
+          ],
+          "message": "don't focus tests"
+        }
+      ]
+    },
     "no-magic-numbers": true,
     "no-require-imports": true,
-    "no-duplicate-super": true,
     "no-boolean-literal-compare": true,
-    "no-namespace": [
-      true,
-      "allow-declarations"
-    ],
-    "no-invalid-this": [
-      true,
-      "check-function-in-method"
-    ],
-    "ordered-imports": [
-      true
-    ],
-    "interface-name": [
-      false
-    ],
+    "no-invalid-this": {
+      "options": "check-function-in-method"
+    },
+    "no-invalid-template-strings": true,
+    "ordered-imports": true,
+    "prefer-template": true,
     "newline-before-return": true,
-    "object-literal-shorthand": true,
-    "arrow-return-shorthand": [
-      true
-    ],
-    "unified-signatures": true,
-    "prefer-for-of": true,
     "match-default-export-name": true,
-    "prefer-const": true,
-    "ban-types": [
-      true,
-      [
-        "Object",
-        "Avoid using the `Object` type. Did you mean `object`?"
-      ],
-      [
-        "Function",
-        "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."
-      ],
-      [
-        "Boolean",
-        "Avoid using the `Boolean` type. Did you mean `boolean`?"
-      ],
-      [
-        "Number",
-        "Avoid using the `Number` type. Did you mean `number`?"
-      ],
-      [
-        "String",
-        "Avoid using the `String` type. Did you mean `string`?"
-      ],
-      [
-        "Symbol",
-        "Avoid using the `Symbol` type. Did you mean `symbol`?"
-      ],
-      [
-        "Array",
-        "Avoid using the `Array<T>` type. Use 'type[]' instead."
+    "no-parameter-reassignment": true,
+    "file-name-casing": {
+      "options": [
+        "kebab-case"
       ]
-    ]
-  }
+    },
+    "switch-default": true,
+    // tslint:recommended overrides
+    "no-any": true,
+    "member-access": {
+      "options": [
+        "no-public"
+      ]
+    },
+    "object-literal-sort-keys": false,
+    "interface-over-type-literal": false,
+    // tslint:tslint-config-standard overrides
+    "no-unused-variable": false, // https://github.com/blakeembrey/tslint-config-standard/issues/51
+    // tslint-etc rules
+    "no-unused-declaration": true,
+    // tslint-react rules
+    "jsx-boolean-value": {
+      "options": "never"
+    }
+  },
+  // apply the same rules for any JS if allowJS is gonna be used
+  "jsRules": true
 }

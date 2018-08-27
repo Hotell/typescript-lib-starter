@@ -9,6 +9,7 @@ export class Greeter {
   greetMe() {
     /* istanbul ignore next line */
     if (IS_DEV) {
+      // tslint:disable-next-line:no-console
       console.warn('this method is deprecated, use #greet instead')
     }
 

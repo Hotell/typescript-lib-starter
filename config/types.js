@@ -3,7 +3,7 @@ export {}
 // ===== JEST ====
 
 /**
- * @typedef {import('ts-jest/dist/jest-types').TsJestConfig} TsJestConfig
+ * @typedef {import('ts-jest/dist/types').TsJestConfig} TsJestConfig
  */
 
 // @TODO https://github.com/Microsoft/TypeScript/issues/24916

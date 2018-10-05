@@ -16,11 +16,18 @@ const starterPkg = require('../package.json')
 const args = process.argv.slice(2)
 const pathToProject = args[0]
 
-/**
- * @typedef {typeof projectPkg} Pkg
- */
-
 if (!pathToProject) {
+  console.log(`
+  Usage:
+
+  Your pwd should be typescript-lib-starter github project:
+  "$ pwd 👉  ~/projects/typescript=lib-starter"
+
+  Now you can execute:
+
+  "$ node scripts/migrate.js ../my-projects/my-existing-package"
+  `)
+
   throw new Error(
     'you need provide relative path to package that uses ts-lib-starter!'
   )
@@ -45,6 +52,7 @@ function main() {
   updateTsLintConfig()
   updateConfigDir()
   updateScriptsDir()
+  updatePrettierIgnore()
 
   console.log('DONE ✅')
 }
@@ -67,6 +75,12 @@ function updatePackageJson() {
     main: starterPkg.main,
     engines: { ...libPackagePkg.engines, ...starterPkg.engines },
     scripts: { ...libPackagePkg.scripts, ...starterPkg.scripts },
+    config: {
+      ...starterPkg.config,
+    },
+    husky: {
+      ...starterPkg.husky,
+    },
     peerDependencies: sortObjectByKeyNameList({
       ...libPackagePkg.peerDependencies,
       ...starterPkg.peerDependencies,
@@ -174,6 +188,7 @@ function updateConfigDir() {
   const libPackageConfigPathDir = resolve(PACKAGE_ROOT, 'config')
 
   const filesToCopy = [
+    'commitlint.config.js',
     'global.d.ts',
     'helpers.js',
     'rollup.config.js',
@@ -218,4 +233,13 @@ function updateScriptsDir() {
   })
 
   console.log('==scripts/ updated==\n')
+}
+
+function updatePrettierIgnore() {
+  const starterPrettierIgnorePath = resolve(ROOT, '.prettierignore')
+  const libPackagePrettierIgnorePath = resolve(PACKAGE_ROOT, '.prettierignore')
+
+  copyFileSync(starterPrettierIgnorePath, libPackagePrettierIgnorePath)
+
+  console.log('==.prettierignore updated==\n')
 }

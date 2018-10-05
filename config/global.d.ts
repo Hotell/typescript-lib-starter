@@ -61,6 +61,11 @@ declare module 'rollup-plugin-terser' {
 // =====================
 // missing library types
 // =====================
+declare module '@commitlint/core' {
+  interface Config {
+    extends: string[]
+  }
+}
 declare module 'sort-object-keys' {
   const sortPackageJson: <T extends {}>(
     object: T,

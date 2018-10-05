@@ -54,15 +54,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "types": "conventional-commit-types",
-      "maxSubjectLength": 120
     }
   },
   "husky": {
     "hooks": {
-      "commit-msg": "validate-commit-msg",
+      "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
       "pre-push": "npm run style && npm test -- --bail --onlyChanged"
     }
@@ -82,6 +78,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "7.2.0",
+    "@commitlint/config-conventional": "7.1.2",
     "@types/chokidar": "1.7.5",
     "@types/jest": "23.3.3",
     "@types/json5": "0.0.30",
@@ -119,7 +117,6 @@
     "tslint-react": "3.6.0",
     "typedoc": "0.12.0",
     "typescript": "2.9.2",
-    "validate-commit-msg": "2.14.0",
     "webpack-config-utils": "2.3.1"
   }
 }

@@ -1,4 +1,3 @@
-// helpers
 module.exports = {
   camelCaseToDash,
   dashToCamelCase,

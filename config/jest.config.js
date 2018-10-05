@@ -1,30 +1,14 @@
-// @ts-check
-
-const { defaults } = require('jest-config')
-
-/**
- * @type {import('./types').TsJestConfig}
- */
-const tsJestConfig = {
-  skipBabel: true,
-}
-
 /**
  * @type {Partial<jest.InitialOptions>}
  */
 const config = {
+  preset: 'ts-jest',
   rootDir: '..',
-  transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
-  },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.ts?(x)',
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
   ],
-  moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
-  globals: {
-    'ts-jest': tsJestConfig,
-  },
+  testPathIgnorePatterns: ['dist'],
   coverageThreshold: {
     global: {
       branches: 80,

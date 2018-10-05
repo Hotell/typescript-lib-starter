@@ -1,23 +1,16 @@
-// ts-jest types require 'babel-core'
-declare module 'babel-core' {
+// ============================
+// ts-jest types require 'babel__core'
+// ============================
+declare module 'babel__core' {
   interface TransformOptions {}
 }
 
-declare module 'jest-config' {
-  const defaults: jest.DefaultOptions
-}
-
-declare module 'sort-object-keys' {
-  const sortPackageJson: <T extends {}>(
-    object: T,
-    sortWith?: (...args: any[]) => any
-  ) => T
-  export = sortPackageJson
-}
-
-type RollupPluginFn<O extends object = {}> = (
-  options?: O
-) => import('rollup').Plugin
+// ============================
+// Rollup plugins without types
+// ============================
+type RollupPluginImpl<O extends object = object> = import('rollup').PluginImpl<
+  O
+>
 
 declare module 'rollup-plugin-json' {
   export interface Options {
@@ -37,30 +30,41 @@ declare module 'rollup-plugin-json' {
      */
     indent?: string
   }
-  const plugin: RollupPluginFn<Options>
+  const plugin: RollupPluginImpl<Options>
   export default plugin
 }
 declare module 'rollup-plugin-sourcemaps' {
-  const plugin: RollupPluginFn
+  const plugin: RollupPluginImpl
   export default plugin
 }
 declare module 'rollup-plugin-node-resolve' {
-  const plugin: RollupPluginFn
+  const plugin: RollupPluginImpl
   export default plugin
 }
 declare module 'rollup-plugin-commonjs' {
-  const plugin: RollupPluginFn
+  const plugin: RollupPluginImpl
   export default plugin
 }
 declare module 'rollup-plugin-replace' {
-  const plugin: RollupPluginFn
+  const plugin: RollupPluginImpl
   export default plugin
 }
 declare module 'rollup-plugin-uglify' {
-  const uglify: RollupPluginFn
+  const uglify: RollupPluginImpl
   export { uglify }
 }
 declare module 'rollup-plugin-terser' {
-  const terser: RollupPluginFn
+  const terser: RollupPluginImpl
   export { terser }
+}
+
+// =====================
+// missing library types
+// =====================
+declare module 'sort-object-keys' {
+  const sortPackageJson: <T extends {}>(
+    object: T,
+    sortWith?: (...args: any[]) => any
+  ) => T
+  export = sortPackageJson
 }

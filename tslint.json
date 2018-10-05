@@ -77,7 +77,7 @@
     "object-literal-sort-keys": false,
     "interface-over-type-literal": false,
     // tslint:tslint-config-standard overrides
-    "no-unused-variable": false, // https://github.com/blakeembrey/tslint-config-standard/issues/51
+    //
     // tslint-etc rules
     "no-unused-declaration": true,
     // tslint-react rules

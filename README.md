@@ -42,6 +42,8 @@ This npm library starter:
 + "version": "1.0.0",
 - "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
 + "description": "What is your library all about...",
+- "keywords": [ "typescript", "library-starter", "rollup", "jest" ]
++ "keywords": [ "typescript", "your library keyowrds" ]
 - "author": "Martin Hochel",
 + "author": "{yourName}",
 - "license": "MIT",

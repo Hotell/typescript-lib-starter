@@ -20,8 +20,8 @@ if (!pathToProject) {
   console.log(`
   Usage:
 
-  Your pwd should be typescript-lib-starter github project:
-  "$ pwd 👉  ~/projects/typescript=lib-starter"
+  Your current working directory should be within typescript-lib-starter github project:
+  "$ pwd 👉  ~/projects/typescript-lib-starter"
 
   Now you can execute:
 
@@ -123,7 +123,11 @@ function updatePackageJson() {
     const updatedLibPkgToWrite = JSON.stringify(pkg, null, 2)
     writeFileSync(join(PACKAGE_ROOT, 'package.json'), updatedLibPkgToWrite)
 
-    console.log('\n updated package.json:', updatedLibPkgToWrite, '\n')
+    console.log(
+      '\n updated package.json:',
+      updatedLibPkgToWrite,
+      '========================\n'
+    )
   }
 }
 
@@ -149,10 +153,10 @@ function updateTsConfig() {
     readFileSync(libPackageConfigPath, { encoding: 'utf-8' })
   )
 
-  console.log('starter:', starterConfig)
-  console.log('library:', libConfig)
+  // console.log('starter:', starterConfig)
+  // console.log('library:', libConfig)
 
-  console.log('==TS-Config:nothing updated==\n')
+  console.log('==TS-Config:nothing updated ☕️ ==\n')
 }
 
 function updateTsLintConfig() {
@@ -177,10 +181,10 @@ function updateTsLintConfig() {
     readFileSync(libPackageConfigPath, { encoding: 'utf-8' })
   )
 
-  console.log('starter:', starterConfig)
-  console.log('library:', libConfig)
+  // console.log('starter:', starterConfig)
+  // console.log('library:', libConfig)
 
-  console.log('==TS-Lint:nothing updated==\n')
+  console.log('==TS-Lint:nothing updated ☕️ ==\n')
 }
 
 function updateConfigDir() {
@@ -189,11 +193,12 @@ function updateConfigDir() {
 
   const filesToCopy = [
     'commitlint.config.js',
-    'global.d.ts',
-    'helpers.js',
+    'jest.config.js',
     'rollup.config.js',
-    'tsconfig.json',
+    'helpers.js',
     'types.js',
+    'global.d.ts',
+    'tsconfig.json',
   ]
   const filesToRemove = ['webpack.config.js']
 
@@ -205,10 +210,13 @@ function updateConfigDir() {
   })
 
   filesToRemove.forEach((file) => {
-    unlinkSync(join(libPackageConfigPathDir, file))
+    const pathFile = join(libPackageConfigPathDir, file)
+    if (existsSync(pathFile)) {
+      unlinkSync(pathFile)
+    }
   })
 
-  console.log('==config/ updated==\n')
+  console.log('==config/ updated ✅ ==\n')
 }
 
 function updateScriptsDir() {
@@ -219,7 +227,7 @@ function updateScriptsDir() {
   /**
    * @type {string[]}
    */
-  const filesToRemove = []
+  const filesToRemove = ['migrate.js']
 
   filesToCopy.forEach((file) => {
     copyFileSync(
@@ -229,10 +237,13 @@ function updateScriptsDir() {
   })
 
   filesToRemove.forEach((file) => {
-    unlinkSync(join(libPackageScriptsPathDir, file))
+    const pathFile = join(libPackageScriptsPathDir, file)
+    if (existsSync(pathFile)) {
+      unlinkSync(pathFile)
+    }
   })
 
-  console.log('==scripts/ updated==\n')
+  console.log('==scripts/ updated  ✅  ==\n')
 }
 
 function updatePrettierIgnore() {
@@ -241,5 +252,5 @@ function updatePrettierIgnore() {
 
   copyFileSync(starterPrettierIgnorePath, libPackagePrettierIgnorePath)
 
-  console.log('==.prettierignore updated==\n')
+  console.log('==.prettierignore updated  ✅  ==\n')
 }

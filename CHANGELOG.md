@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.0"></a>
+
+# [4.1.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v4.0.0...v4.1.0) (2018-10-15)
+
+### Bug Fixes
+
+- **config:** tweak migrate scripts ([edd733e](https://www.github.com/Hotell/typescript-lib-starter/commit/edd733e))
+- **config:** update ts-jest types import ([9d3daab](https://www.github.com/Hotell/typescript-lib-starter/commit/9d3daab))
+
+### Features
+
+- **config:** replace validate-commit-msg with commitlint ([4bb58bc](https://www.github.com/Hotell/typescript-lib-starter/commit/4bb58bc))
+- **lint:** remove prefer-method-signature as methods don't have proper contravariant checks ([77de4dd](https://www.github.com/Hotell/typescript-lib-starter/commit/77de4dd))
+- **scripts:** update migrate script to match latest stack ([ec93c6a](https://www.github.com/Hotell/typescript-lib-starter/commit/ec93c6a))
+- **tslint:** revamp tslint rules ([e16ce5b](https://www.github.com/Hotell/typescript-lib-starter/commit/e16ce5b))
+
 <a name="4.0.0"></a>
 
 # [4.0.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v3.0.0...v4.0.0) (2018-08-14)

@@ -1,6 +1,6 @@
 {
   "name": "@martin_hotell/typescript-lib-starter",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "TypeScript library setup for multiple compilation targets using tsc and rollup",
   "keywords": [
     "typescript",

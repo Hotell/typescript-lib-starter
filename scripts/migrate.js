@@ -153,10 +153,20 @@ function updateTsConfig() {
     readFileSync(libPackageConfigPath, { encoding: 'utf-8' })
   )
 
-  // console.log('starter:', starterConfig)
-  // console.log('library:', libConfig)
+  const newConfig = {
+    ...libConfig,
+    compilerOptions: {
+      ...libConfig.compilerOptions,
+      ...starterConfig.compilerOptions,
+    },
+    include: [...new Set([...libConfig.include, ...starterConfig.include])],
+    exclude: [...new Set([...libConfig.exclude, ...starterConfig.exclude])],
+  }
 
-  console.log('==TS-Config:nothing updated ☕️ ==\n')
+  const updatedLibTsConfigToWrite = JSON.stringify(newConfig, null, 2)
+  writeFileSync(libPackageConfigPath, updatedLibTsConfigToWrite)
+
+  console.log('==TS-Config:updated ☕️✅ ==\n')
 }
 
 function updateTsLintConfig() {

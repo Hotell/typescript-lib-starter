@@ -26,6 +26,9 @@
   ],
   "exclude": [
     "node_modules",
+    "**/__tests__",
+    "**/**/*.spec.*",
+    "**/**/*.test.*"
   ],
   "compileOnSave": false
 }

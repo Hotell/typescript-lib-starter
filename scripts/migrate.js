@@ -160,7 +160,6 @@ function updateTsConfig() {
       ...starterConfig.compilerOptions,
     },
     include: [...new Set([...libConfig.include, ...starterConfig.include])],
-    exclude: [...new Set([...libConfig.exclude, ...starterConfig.exclude])],
   }
 
   const updatedLibTsConfigToWrite = JSON.stringify(newConfig, null, 2)

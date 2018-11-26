@@ -190,6 +190,9 @@ function updateTsLintConfig() {
     readFileSync(libPackageConfigPath, { encoding: 'utf-8' })
   )
 
+  // @TODO find out how to properly merge objects with comments as tslint.json supports comments
+  // 👉 https://github.com/Hotell/typescript-lib-starter/issues/133
+
   // console.log('starter:', starterConfig)
   // console.log('library:', libConfig)
 

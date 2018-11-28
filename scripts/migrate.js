@@ -105,6 +105,7 @@ function updatePackageJson() {
       'uglifyjs-webpack-plugin',
       'webpack',
       'webpack-cli',
+      'validate-commit-msg',
       // packages needed for this script
       'json5',
       '@types/json5',

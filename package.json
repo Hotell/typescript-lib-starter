@@ -83,7 +83,7 @@
     "@types/chokidar": "1.7.5",
     "@types/jest": "23.3.9",
     "@types/json5": "0.0.30",
-    "@types/node": "10.12.10",
+    "@types/node": "10.12.12",
     "@types/prettier": "1.15.1",
     "@types/webpack-config-utils": "2.3.0",
     "commitizen": "3.0.5",

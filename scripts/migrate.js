@@ -106,9 +106,11 @@ function updatePackageJson() {
       'webpack',
       'webpack-cli',
       'validate-commit-msg',
+      'awesome-typescript-loader',
       // packages needed for this script
       'json5',
       '@types/json5',
+      'sort-package-json',
       'sort-object-keys',
     ]
 

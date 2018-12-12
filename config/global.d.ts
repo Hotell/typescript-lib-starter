@@ -73,3 +73,25 @@ declare module 'sort-object-keys' {
   ) => T
   export = sortPackageJson
 }
+
+declare module 'prompt'
+declare module 'replace-in-file' {
+  interface Options {
+    files: string | string[]
+    from: Array<string | RegExp>
+    to: string | string[]
+    ignore: string | string[]
+    dry: boolean
+    encoding: string
+    disableGlobs: boolean
+    allowEmptyPaths: boolean
+  }
+
+  interface API {
+    (options: Partial<Options>): string[]
+    sync(options: Partial<Options>): string[]
+  }
+
+  const api: API
+  export = api
+}

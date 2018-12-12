@@ -26,10 +26,10 @@ If you've never submitted a Pull request before please visit http://makeapullreq
 1.  Fork the repo.
 1.  `git clone` your fork.
 1.  Make a `git checkout -b branch-name` branch for your change.
-1.  Run `yarn install` (make sure you have node and npm installed first)
+1.  Run `yarn install --ignore-scripts` (make sure you have node and yarn installed first)
     Updates
 
-1.  make sure to add unit tests
+1.  Make sure to add unit tests
 1.  If there is a `*.spec.ts` file, update it to include a test for your change, if needed. If this file doesn't exist, please create it.
 1.  Run `yarn test` or `yarn test:watch` to make sure all tests are working, regardless if a test was added.
 

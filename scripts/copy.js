@@ -1,3 +1,9 @@
+/**
+ * This file only purpose is to copy files before npm publish and strip churn/security sensitive metadata from package.json
+ *
+ * **NOTE:**
+ * 👉 This file should not use any 3rd party dependency
+ */
 const { writeFileSync, copyFileSync } = require('fs')
 const { resolve } = require('path')
 const packageJson = require('../package.json')

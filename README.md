@@ -26,39 +26,15 @@ This npm library starter:
   - > `types` field in package.json
 - `sideEffects` 👉 [support proper tree-shaking](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) for whole library ( Webpack >= 4). Turn this off or adjust as needed if your modules are not pure!
 
-## Start coding in 4 steps !
+## Start coding in 2 steps !
 
 1.  `git clone https://github.com/Hotell/typescript-lib-starter <your-libary-folder-name> && cd $_`
 
-2.  `rm -rf .git && git init`
+1.  `yarn`
 
-3.  in `package.json` reset following fields:
+![setting-up-your-library](https://user-images.githubusercontent.com/1223799/49905150-fd09c880-fe6c-11e8-9ad8-425c3a38b1b4.gif)
 
-```diff
-{
-- "name": "@next-gen/typescript-lib-starter",
-+ "name": "{yourLibraryPackageName}",
-- "version": "1.7.0",
-+ "version": "1.0.0",
-- "description": "TypeScript library setup for multiple compilation targets using tsc and webpack",
-+ "description": "What is your library all about...",
-- "keywords": [ "typescript", "library-starter", "rollup", "jest" ]
-+ "keywords": [ "typescript", "your library keyowrds" ]
-- "author": "Martin Hochel",
-+ "author": "{yourName}",
-- "license": "MIT",
-+ "license": "{yourLicense}",
-  "repository": {
-    "type": "git",
--   "url": "https://www.github.com/Hotell/typescript-lib-starter"
-+   "url": "https://www.github.com/{yourAccountName}/{yourLibraryPackageName}"
-  }
-}
-```
-
-4.  Install all dependencies `yarn install`
-
-Happy coding ! 🖖
+Yes that's it. Happy coding ! 🖖
 
 ## Consumption of published library:
 

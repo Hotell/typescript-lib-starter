@@ -4,7 +4,7 @@
 
 ## Bug report
 
-- {library-name} version: _x.x.x_ (<!-- (run `npm list {library-name}` from a terminal/cmd prompt): -->)
+- {package-name} version: _x.x.x_ (<!-- (run `npm list {package-name}` from a terminal/cmd prompt): -->)
 - Affected browsers (and versions): _IE 10_
 
 ### Current behaviour

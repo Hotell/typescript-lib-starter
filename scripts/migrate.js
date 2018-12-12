@@ -3,6 +3,7 @@
  */
 
 const JSON5 = require('json5')
+const kleur = require('kleur')
 const sortObjectByKeyNameList = require('sort-object-keys')
 const {
   writeFileSync,
@@ -15,9 +16,10 @@ const { resolve, join } = require('path')
 const starterPkg = require('../package.json')
 const args = process.argv.slice(2)
 const pathToProject = args[0]
+const { log } = console
 
 if (!pathToProject) {
-  console.log(`
+  log(`
   Usage:
 
   Your current working directory should be within typescript-lib-starter github project:
@@ -43,9 +45,9 @@ function main() {
     throw new Error(`${PACKAGE_ROOT}, doesn't exists`)
   }
 
-  console.log('Migration initialized 👀')
+  log(kleur.italic('Migration initialized 👀...'))
 
-  console.log('path to Package:', PACKAGE_ROOT)
+  log(kleur.gray('path to Package:'), PACKAGE_ROOT)
 
   updatePackageJson()
   updateTsConfig()
@@ -54,7 +56,7 @@ function main() {
   updateScriptsDir()
   updatePrettierIgnore()
 
-  console.log('DONE ✅')
+  log(kleur.cyan('DONE ✅'))
 }
 
 function updatePackageJson() {
@@ -63,7 +65,7 @@ function updatePackageJson() {
   /**
    * @type {typeof starterPkg}
    */
-  const libPackagePkg = JSON5.parse(
+  const libPackagePkg = JSON.parse(
     readFileSync(libPackagePkgPath, { encoding: 'utf-8' })
   )
 
@@ -126,7 +128,7 @@ function updatePackageJson() {
     const updatedLibPkgToWrite = JSON.stringify(pkg, null, 2)
     writeFileSync(join(PACKAGE_ROOT, 'package.json'), updatedLibPkgToWrite)
 
-    console.log(
+    log(
       '\n updated package.json:',
       updatedLibPkgToWrite,
       '========================\n'
@@ -168,7 +170,7 @@ function updateTsConfig() {
   const updatedLibTsConfigToWrite = JSON.stringify(newConfig, null, 2)
   writeFileSync(libPackageConfigPath, updatedLibTsConfigToWrite)
 
-  console.log('==TS-Config:updated ☕️✅ ==\n')
+  log('==TS-Config:updated ☕️✅ ==\n')
 }
 
 function updateTsLintConfig() {
@@ -196,10 +198,10 @@ function updateTsLintConfig() {
   // @TODO find out how to properly merge objects with comments as tslint.json supports comments
   // 👉 https://github.com/Hotell/typescript-lib-starter/issues/133
 
-  // console.log('starter:', starterConfig)
-  // console.log('library:', libConfig)
+  // log('starter:', starterConfig)
+  // log('library:', libConfig)
 
-  console.log('==TS-Lint:nothing updated ☕️ ==\n')
+  log('==TS-Lint:nothing updated ☕️ ==\n')
 }
 
 function updateConfigDir() {
@@ -231,7 +233,7 @@ function updateConfigDir() {
     }
   })
 
-  console.log('==config/ updated ✅ ==\n')
+  log('==config/ updated ✅ ==\n')
 }
 
 function updateScriptsDir() {
@@ -258,7 +260,7 @@ function updateScriptsDir() {
     }
   })
 
-  console.log('==scripts/ updated  ✅  ==\n')
+  log('==scripts/ updated  ✅  ==\n')
 }
 
 function updatePrettierIgnore() {
@@ -267,5 +269,5 @@ function updatePrettierIgnore() {
 
   copyFileSync(starterPrettierIgnorePath, libPackagePrettierIgnorePath)
 
-  console.log('==.prettierignore updated  ✅  ==\n')
+  log('==.prettierignore updated  ✅  ==\n')
 }

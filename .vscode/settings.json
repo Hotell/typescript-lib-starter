@@ -5,9 +5,12 @@
   "editor.formatOnSave": true,
   "typescript.format.enable": false,
   "javascript.format.enable": false,
+  "typescript.implementationsCodeLens.enabled": true,
   "typescript.referencesCodeLens.enabled": true,
   "javascript.referencesCodeLens.enabled": true,
   "editor.rulers": [
     80,100
   ],
+  // This needs to be here as prettier plugin has problems with consumning prettier config outside of root
+  "prettier.arrowParens": "always"
 }

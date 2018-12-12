@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.0.0"></a>
+
+# [5.0.0](https://github.com/Hotell/typescript-lib-starter/compare/v4.1.0...v5.0.0) (2018-12-12)
+
+### Bug Fixes
+
+- **scripts:** don't handle exclude within migrate ([30fa98f](https://github.com/Hotell/typescript-lib-starter/commit/30fa98f))
+- **scripts:** remove ats-loader and sort-pkg-json ([2e16c3f](https://github.com/Hotell/typescript-lib-starter/commit/2e16c3f))
+- **scripts:** remove validade-commit-msg from pkg ([a8c0da0](https://github.com/Hotell/typescript-lib-starter/commit/a8c0da0))
+
+### Features
+
+- **scripts:** implement init script ([#143](https://github.com/Hotell/typescript-lib-starter/issues/143)) ([53be637](https://github.com/Hotell/typescript-lib-starter/commit/53be637)), closes [#142](https://github.com/Hotell/typescript-lib-starter/issues/142) [#145](https://github.com/Hotell/typescript-lib-starter/issues/145) [#130](https://github.com/Hotell/typescript-lib-starter/issues/130)
+- **tsc:** exclude tests as ts-jest compiles them now ([2a543fb](https://github.com/Hotell/typescript-lib-starter/commit/2a543fb))
+- **tslint:** add new rules from tslint-etc ([b956c23](https://github.com/Hotell/typescript-lib-starter/commit/b956c23))
+
+### Reverts
+
+- **tsc:** remove exclude as it breaks lint-staged ([c2d0a52](https://github.com/Hotell/typescript-lib-starter/commit/c2d0a52))
+
+### BREAKING CHANGES
+
+- **scripts:** Now TS >= 3 is used which may break some packages that desperately need to support lower versions
+
 <a name="4.1.0"></a>
 
 # [4.1.0](https://www.github.com/Hotell/typescript-lib-starter/compare/v4.0.0...v4.1.0) (2018-10-15)

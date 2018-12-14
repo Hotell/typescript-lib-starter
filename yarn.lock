@@ -180,10 +180,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@phenomnomnominal/tsquery@^2.1.1":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@phenomnomnominal/tsquery/-/tsquery-2.2.0.tgz#995fff56c0aa56e328accfaa09224e71c4b75bf0"
-  integrity sha512-UfE664ClFYqI2g0A9qgPDSfDD0JUpsg4uu7yvooZphx0TcSP8H05bnHLbPmmv86SpgczRx/1i0w4GbLcmVrovA==
+"@phenomnomnominal/tsquery@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@phenomnomnominal/tsquery/-/tsquery-3.0.0.tgz#6f2f4dbf6304ff52b12cc7a5b979f20c3794a22a"
+  integrity sha512-SW8lKitBHWJ9fAYkJ9kJivuctwNYCh3BUxLdH0+XiR1GPBiu+7qiZzh8p8jqlj1LgVC1TbvfNFroaEsmYlL8Iw==
   dependencies:
     esquery "^1.0.1"
 
@@ -6225,12 +6225,12 @@ tslint-eslint-rules@^5.3.1:
     tslib "1.9.0"
     tsutils "^3.0.0"
 
-tslint-etc@1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.2.7.tgz#55b1b9be6adefedcb7ead3e1c97a25cc552dea35"
-  integrity sha512-NHrnnZKJ4+fERJhLeA9KpjVdy3XRpsyUhEPPSEYAES+eg+yitxY1jC6LwH4hBotYvnR/z5o+BLPycGWcHbX6wA==
+tslint-etc@1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.2.8.tgz#4a1a65c6bea96237168a0b4a2d0d1e0ced0e73fd"
+  integrity sha512-nQ+Y+nYMhPgUNCE2L6qDAI6Z26qUASiFrLIhSdZWAXiHRiiMUzIK7jMEL7ZFDE8rFWo7mv6jgFkJWUZ3pFwN7A==
   dependencies:
-    "@phenomnomnominal/tsquery" "^2.1.1"
+    "@phenomnomnominal/tsquery" "^3.0.0"
     tslib "^1.8.0"
     tsutils "^3.0.0"
 

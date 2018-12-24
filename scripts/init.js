@@ -330,8 +330,9 @@ function createQuestions(config) {
       initial: /**@type any */ (false)
     },
     {
-      type: /** @type {import('prompts').ValueOrFunc<string>} */ ((prev) =>
-        prev === true ? 'text' : null),
+      type: /** @type {import('prompts').ValueOrFunc<import('prompts').PromptType>} */ ((
+        prev
+      ) => (prev === true ? 'text' : null)),
       name: 'scope',
       message: 'Scope/namespace (needs to start with @)',
       validate: (value) =>
@@ -385,6 +386,23 @@ function createQuestions(config) {
 
 /**
  *
+ * @param {import('prompts').PromptObject} prompt
+ * @param {any} answers
+ * @returns {void | boolean}
+ */
+function handlePromptExit(prompt, answers) {
+  error(
+    kleur
+      .bold()
+      .white()
+      .bgRed('Terminating library init')
+  )
+
+  process.exit(1)
+}
+
+/**
+ *
  * @param {import('./types').PromptAnswers} promptAnswers
  * @returns {import('./types').LibConfig}
  */
@@ -428,7 +446,8 @@ async function main() {
   const userInfo = getUserInfo()
   const questions = createQuestions(userInfo)
   const response = /** @type {import('./types').PromptAnswers} */ (await prompts(
-    questions
+    questions,
+    { onCancel: handlePromptExit }
   ))
   const config = getLibConfig(response)
 

@@ -20,7 +20,9 @@
   "author": "Martin Hochel",
   "license": "MIT",
   "engines": {
-    "node": ">=8.5"
+    "node": ">=8.5",
+    "npm": ">=6.0",
+    "yarn": "^1.0"
   },
   "scripts": {
     "postinstall": "node scripts/init.js",

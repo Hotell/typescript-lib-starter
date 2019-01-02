@@ -46,8 +46,8 @@
     "release": "standard-version",
     "postrelease": "node scripts/copy.js && npm run release:github && npm run release:npm",
     "release:github": "git push --no-verify --follow-tags origin master",
-    "release:npm": "cd dist && npm publish",
-    "release:preflight": "cd dist && npm pack",
+    "release:npm": "npm publish dist",
+    "release:preflight": "npm pack ./dist --dry-run",
     "size": "npm run size:umd && npm run size:fesm",
     "size:umd": "shx echo \"Gzipped+minified UMD bundle Size:\" && cross-var strip-json-comments --no-whitespace \"./dist/bundles/index.umd.min.js\" | gzip-size",
     "size:fesm": "shx echo \"Gzipped+minified FESM bundle Size:\" && strip-json-comments --no-whitespace \"./dist/bundles/index.esm.min.js\" | gzip-size"

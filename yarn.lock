@@ -2180,7 +2180,7 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-escodegen@^1.9.1:
+escodegen@^1.11.0, escodegen@^1.9.1:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.11.0.tgz#b27a9389481d5bfd5bec76f7bb1eb3f8f4556589"
   integrity sha512-IeMV45ReixHS53K/OmfKAIztN/igDHzTJUhZM3k1jMhIZWjk45SMwAtBsEXiJp3vSPmTcu6CXn7mDvFHRN66fw==
@@ -3767,6 +3767,14 @@ jest-worker@^23.2.0:
   dependencies:
     merge-stream "^1.0.1"
 
+jest-worker@^24.0.0-alpha.9:
+  version "24.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.0.0-alpha.9.tgz#2d8a35687744461b5aa8ed553dc4d5a5da2ceab8"
+  integrity sha512-6lveyea6qbLdlQy+H+hn4IcEVgdqlI++KZU0tOdLeCliJ7myj7sDAO3fCVAcuMW9yxekIwrYclj472mP3wQdcQ==
+  dependencies:
+    merge-stream "^1.0.1"
+    supports-color "^5.5.0"
+
 jest@23.6.0:
   version "23.6.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-23.6.0.tgz#ad5835e923ebf6e19e7a1d7529a432edfee7813d"
@@ -3927,6 +3935,11 @@ kleur@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
   integrity sha512-77XF9iTllATmG9lSlIv0qdQ2BQ/h9t0bJllHlbvsQ0zUWfU7Yi0S8L5JXzPZgkefIiajLmBJJ4BsMJmqcf7oxQ==
+
+lave@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/lave/-/lave-1.1.10.tgz#062207652c5502d7c6ff096c9de3995401f634d5"
+  integrity sha1-BiIHZSxVAtfG/wlsneOZVAH2NNU=
 
 lcid@^1.0.0:
   version "1.0.0"
@@ -5502,15 +5515,16 @@ rollup-plugin-sourcemaps@0.4.2:
     rollup-pluginutils "^2.0.1"
     source-map-resolve "^0.5.0"
 
-rollup-plugin-terser@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-3.0.0.tgz#045bd7cf625ee1affcfe6971dab6fffe6fb48c65"
-  integrity sha512-Ed9zRD7OoCBnh0XGlEAJle5TCUsFXMLClwKzZWnS1zbNO4MelHjfCSdFZxCAdH70M40nhZ1nRrY2GZQJhSMcjA==
+rollup-plugin-terser@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-4.0.2.tgz#78936d182ae7c4ecb313403ff5d5faad1b69e2aa"
+  integrity sha512-M2vY7NPMa3N77/avJSJyBva4nyBTiUM0kgMoWwEAeo2Edl3MW/GoM0069FzVrfMYP3xDqcVrDbaIOqVaBD8lHQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
-    jest-worker "^23.2.0"
-    serialize-javascript "^1.5.0"
-    terser "^3.8.2"
+    escodegen "^1.11.0"
+    jest-worker "^24.0.0-alpha.9"
+    lave "^1.1.10"
+    terser "^3.14.1"
 
 rollup-plugin-uglify@6.0.0:
   version "6.0.0"
@@ -6021,7 +6035,7 @@ supports-color@^3.1.2:
   dependencies:
     has-flag "^1.0.0"
 
-supports-color@^5.2.0, supports-color@^5.3.0:
+supports-color@^5.2.0, supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
@@ -6051,10 +6065,10 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
-terser@^3.8.2:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-3.11.0.tgz#60782893e1f4d6788acc696351f40636d0e37af0"
-  integrity sha512-5iLMdhEPIq3zFWskpmbzmKwMQixKmTYwY3Ox9pjtSklBLnHiuQ0GKJLhL1HSYtyffHM3/lDIFBnb82m9D7ewwQ==
+terser@^3.14.1:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-3.14.1.tgz#cc4764014af570bc79c79742358bd46926018a32"
+  integrity sha512-NSo3E99QDbYSMeJaEk9YW2lTg3qS9V0aKGlb+PlOrei1X02r1wSBHCNX/O+yeTRFSWPKPIGj6MqvvdqV4rnVGw==
   dependencies:
     commander "~2.17.1"
     source-map "~0.6.1"

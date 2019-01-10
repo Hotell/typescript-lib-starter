@@ -252,7 +252,7 @@ function updateScriptsDir() {
   const starterPathDir = resolve(ROOT, 'scripts')
   const libPackagePathDir = resolve(PACKAGE_ROOT, 'scripts')
 
-  const cpFiles = ['copy.js', 'file-size.js', 'tsconfig.json']
+  const cpFiles = ['copy.js', 'file-size.js', 'build.js', 'tsconfig.json']
   /** @type {string[]} */
   const rmFiles = []
   const rmDirs = ['migrate']

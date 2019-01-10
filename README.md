@@ -139,9 +139,9 @@ render(App, mountPoint)
 
 ## [👨‍🔧 Technical overview](./.github/CONTRIBUTING.md#technical-overview)
 
-### [💅 Style guides](./.github/CONTRIBUTING.md#style-guides)
+## [💅 Style guides](./.github/CONTRIBUTING.md#-style-guides)
 
-## [🚀 Publishing](./.github/CONTRIBUTING.md#publishing)
+## [🚀 Publishing](./.github/CONTRIBUTING.md#-publishing)
 
 ## 🕵️‍♀️ Troubleshooting
 

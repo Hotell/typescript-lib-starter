@@ -24,7 +24,7 @@ if (!pathToProject) {
   )
 }
 
-const ROOT = resolve(__dirname, '..')
+const ROOT = process.cwd()
 const PACKAGE_ROOT = resolve(ROOT, pathToProject)
 
 main()
@@ -132,6 +132,10 @@ function updatePackageJson() {
       'sort-package-json',
       'sort-object-keys',
       'shelljs',
+      // packages needed for init script
+      'prompts',
+      '@types/prompts',
+      'replace-in-file',
       // v4 -> v5
       'gzip-size-cli',
       'strip-json-comments-cli',

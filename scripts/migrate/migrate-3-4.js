@@ -26,7 +26,7 @@ if (!pathToProject) {
   )
 }
 
-const ROOT = resolve(__dirname, '..')
+const ROOT = process.cwd()
 const PACKAGE_ROOT = resolve(ROOT, pathToProject)
 
 main()

@@ -11,6 +11,8 @@ const { log, error } = console
 const ROOT = resolve(__dirname, '..')
 const pkg = require('../package.json')
 
+const { CI: IS_CI } = normalizeEnv(process.env)
+
 /**
  * @typedef {keyof typeof pkg['devDependencies']} PkgKeys
  */
@@ -48,6 +50,33 @@ main()
 //  Helpers
 // =============================================================================
 
+/**
+ *
+ * @param {NodeJS.ProcessEnv} env
+ * @returns {{[P in keyof NodeJS.ProcessEnv]: string | boolean | undefined}}
+ */
+function normalizeEnv(env) {
+  const keys = Object.keys(env)
+
+  // prettier-ignore
+  const normalizedEnvMap = /** @type {{[P in keyof NodeJS.ProcessEnv]: string | boolean | undefined}} */ (keys.reduce(
+    (acc, nextKey) => {
+      const value = env[nextKey]
+      if (value === 'true') {
+        return { ...acc, [nextKey]: true }
+      }
+
+      if (value === 'false') {
+        return { ...acc, [nextKey]: false }
+      }
+
+      return acc
+    },
+    {}
+  ))
+
+  return normalizedEnvMap
+}
 /**
  *
  * @param {string[]} value
@@ -440,6 +469,12 @@ function processTemplates(config) {
 }
 
 async function main() {
+  if (IS_CI) {
+    log(kleur.gray('👉   CI: skipping init'))
+
+    process.exit(0)
+  }
+
   clearConsole()
   checkGit()
 

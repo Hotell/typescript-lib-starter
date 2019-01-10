@@ -1,6 +1,11 @@
 // ============================
 // extend existing types
 // ============================
+declare namespace NodeJS {
+  interface ProcessEnv {
+    CI: 'true' | 'false'
+  }
+}
 
 // ============================
 // Rollup plugins without types
@@ -96,4 +101,49 @@ declare module 'replace-in-file' {
 
   const api: API
   export = api
+}
+
+declare module 'gzip-size' {
+  type Options = import('zlib').ZlibOptions
+  type Input = string | Buffer
+
+  function gzipSize(input: Input, options?: Options): Promise<number>
+  namespace gzipSize {
+    function sync(input: Input, options?: Options): number
+    function stream(options?: Options): import('stream').PassThrough
+    function file(path: string, options?: Options): Promise<number>
+    function fileSync(path: string, options?: Options): number
+  }
+
+  export = gzipSize
+}
+
+declare module 'brotli-size' {
+  type Input = string | Buffer
+
+  namespace brotliSize {
+    function sync(input: Input): number
+    function stream(): import('stream').PassThrough
+  }
+
+  function brotliSize(input: Input): Promise<number>
+
+  export = brotliSize
+}
+
+declare module 'pretty-bytes' {
+  type Options = {
+    /**
+     * @default false
+     */
+    signed: boolean
+    /**
+     * @default false
+     */
+    locale: string | boolean
+  }
+
+  function prettyBytes(input: number, options?: Partial<Options>): string
+
+  export = prettyBytes
 }

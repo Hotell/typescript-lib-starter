@@ -1,34 +1,23 @@
 /**
- * Migrate Typescript-library-starter from 3. -> 4.
+ * Migrate Typescript-library-starter from 4. -> 5.
  */
 
-const JSON5 = require('json5')
-const kleur = require('kleur')
-const sortObjectByKeyNameList = require('sort-object-keys')
-const {
-  writeFileSync,
-  copyFileSync,
-  readFileSync,
-  existsSync,
-  unlinkSync,
-} = require('fs')
+const { writeFileSync, readFileSync, existsSync } = require('fs')
 const { resolve, join } = require('path')
-const starterPkg = require('../package.json')
+
+const kleur = require('kleur')
+
+const sh = require('shelljs')
+const JSON5 = require('json5')
+const sortObjectByKeyNameList = require('sort-object-keys')
+
+const starterPkg = require('../../package.json')
 const args = process.argv.slice(2)
 const pathToProject = args[0]
 const { log } = console
 
 if (!pathToProject) {
-  log(`
-  Usage:
-
-  Your current working directory should be within typescript-lib-starter github project:
-  "$ pwd 👉  ~/projects/typescript-lib-starter"
-
-  Now you can execute:
-
-  "$ node scripts/migrate.js ../my-projects/my-existing-package"
-  `)
+  usage('4', '5')
 
   throw new Error(
     'you need provide relative path to package that uses ts-lib-starter!'
@@ -52,11 +41,32 @@ function main() {
   updatePackageJson()
   updateTsConfig()
   updateTsLintConfig()
+  updatePrettier()
   updateConfigDir()
   updateScriptsDir()
-  updatePrettierIgnore()
+  updateVSCodeDir()
 
   log(kleur.cyan('DONE ✅'))
+  log(kleur.inverse().cyan('Make sure run yarn, to update yarn.lock 🤙'))
+}
+
+/**
+ *
+ * @param {string} from
+ * @param {string} to
+ */
+function usage(from, to) {
+  log(`
+  Usage:
+  $ node scripts/migrate/migrate-${from}-${to} <relative-path-to-your-project>
+
+  Your current working directory should be within typescript-lib-starter github project:
+  "$ pwd 👉  ~/projects/typescript-lib-starter"
+
+  Example:
+
+  "$ node scripts/migrate/migrate-${from}-${to} ../my-projects/my-existing-package"
+  `)
 }
 
 function updatePackageJson() {
@@ -91,10 +101,24 @@ function updatePackageJson() {
       ...starterPkg.devDependencies,
       ...libPackagePkg.devDependencies,
     }),
+    'lint-staged': starterPkg['lint-staged'],
   }
 
+  removeScripts(updatePkg.scripts)
   removePackages(updatePkg.devDependencies)
+
   writePackage(updatePkg)
+
+  /**
+   *
+   * @param {{[packageName:string]:string}} scripts
+   */
+  function removeScripts(scripts) {
+    /** @type {string[]} */
+    const scriptsToRemove = ['size:umd', 'size:fesm']
+
+    scriptsToRemove.forEach((scriptName) => delete scripts[scriptName])
+  }
 
   /**
    *
@@ -102,18 +126,15 @@ function updatePackageJson() {
    */
   function removePackages(devDependencies) {
     const depsToRemove = [
-      '@types/uglifyjs-webpack-plugin',
-      '@types/webpack',
-      'uglifyjs-webpack-plugin',
-      'webpack',
-      'webpack-cli',
-      'validate-commit-msg',
-      'awesome-typescript-loader',
       // packages needed for this script
       'json5',
       '@types/json5',
       'sort-package-json',
       'sort-object-keys',
+      'shelljs',
+      // v4 -> v5
+      'gzip-size-cli',
+      'strip-json-comments-cli',
     ]
 
     depsToRemove.forEach(
@@ -129,9 +150,12 @@ function updatePackageJson() {
     writeFileSync(join(PACKAGE_ROOT, 'package.json'), updatedLibPkgToWrite)
 
     log(
-      '\n updated package.json:',
-      updatedLibPkgToWrite,
-      '========================\n'
+      '\n' +
+        kleur.green('updated package.json:') +
+        '\n' +
+        updatedLibPkgToWrite +
+        '\n' +
+        kleur.gray('========================\n')
     )
   }
 }
@@ -170,12 +194,12 @@ function updateTsConfig() {
   const updatedLibTsConfigToWrite = JSON.stringify(newConfig, null, 2)
   writeFileSync(libPackageConfigPath, updatedLibTsConfigToWrite)
 
-  log('==TS-Config:updated ☕️✅ ==\n')
+  log(kleur.green('==TS-Config:updated ☕️ ✅ ==\n'))
 }
 
 function updateTsLintConfig() {
   /**
-   * @typedef {typeof import('../tslint.json')} TsLintConfig
+   * @typedef {typeof import('../../tslint.json')} TsLintConfig
    */
 
   const starterConfigPath = resolve(ROOT, 'tslint.json')
@@ -201,73 +225,71 @@ function updateTsLintConfig() {
   // log('starter:', starterConfig)
   // log('library:', libConfig)
 
-  log('==TS-Lint:nothing updated ☕️ ==\n')
+  log(kleur.yellow('==TS-Lint:nothing updated ☕️ ==\n'))
 }
 
 function updateConfigDir() {
-  const starterConfigPathDir = resolve(ROOT, 'config')
-  const libPackageConfigPathDir = resolve(PACKAGE_ROOT, 'config')
+  const starterPathDir = resolve(ROOT, 'config')
+  const libConfigPathDir = resolve(PACKAGE_ROOT, 'config')
 
-  const filesToCopy = [
-    'commitlint.config.js',
-    'jest.config.js',
-    'rollup.config.js',
-    'helpers.js',
-    'types.js',
-    'global.d.ts',
-    'tsconfig.json',
-  ]
-  const filesToRemove = ['webpack.config.js']
+  /** @type {string[]} */
+  const cpFiles = []
+  /** @type {string[]} */
+  const rmFiles = ['prettier.config.js']
 
-  filesToCopy.forEach((file) => {
-    copyFileSync(
-      resolve(starterConfigPathDir, file),
-      join(libPackageConfigPathDir, file)
-    )
-  })
+  const cpItems = cpFiles.map((file) => join(starterPathDir, file))
+  const rmItems = rmFiles.map((file) => join(libConfigPathDir, file))
 
-  filesToRemove.forEach((file) => {
-    const pathFile = join(libPackageConfigPathDir, file)
-    if (existsSync(pathFile)) {
-      unlinkSync(pathFile)
-    }
-  })
+  sh.cp('-Rf', cpItems, `${libConfigPathDir}/`)
+  sh.rm('-Rf', rmItems)
 
-  log('==config/ updated ✅ ==\n')
+  log(kleur.underline().white('==📁 config/ updated ✅ =='))
+  log(kleur.red('Removed: \n ' + rmItems.join('\n')))
+  log(kleur.yellow('Copied: \n ' + cpItems.join('\n')))
 }
 
 function updateScriptsDir() {
-  const starterScriptsPathDir = resolve(ROOT, 'scripts')
-  const libPackageScriptsPathDir = resolve(PACKAGE_ROOT, 'scripts')
+  const starterPathDir = resolve(ROOT, 'scripts')
+  const libPackagePathDir = resolve(PACKAGE_ROOT, 'scripts')
 
-  const filesToCopy = ['copy.js', 'tsconfig.json']
-  /**
-   * @type {string[]}
-   */
-  const filesToRemove = ['migrate.js']
+  const cpFiles = ['copy.js', 'file-size.js', 'tsconfig.json']
+  /** @type {string[]} */
+  const rmFiles = []
+  const rmDirs = ['migrate']
 
-  filesToCopy.forEach((file) => {
-    copyFileSync(
-      resolve(starterScriptsPathDir, file),
-      join(libPackageScriptsPathDir, file)
-    )
-  })
+  const cpItems = cpFiles.map((file) => join(starterPathDir, file))
+  const rmItems = [...rmDirs, ...rmFiles].map((file) =>
+    join(libPackagePathDir, file)
+  )
 
-  filesToRemove.forEach((file) => {
-    const pathFile = join(libPackageScriptsPathDir, file)
-    if (existsSync(pathFile)) {
-      unlinkSync(pathFile)
-    }
-  })
+  sh.cp('-Rf', cpItems, `${libPackagePathDir}/`)
+  // 'rm' command checks the item type before attempting to remove it
+  sh.rm('-Rf', rmItems)
 
-  log('==scripts/ updated  ✅  ==\n')
+  log(kleur.underline().white('==📁 scripts/ updated ✅ =='))
+  log(kleur.red('Removed: \n ' + rmItems.join('\n')))
+  log(kleur.yellow('Copied: \n ' + cpItems.join('\n')))
 }
 
-function updatePrettierIgnore() {
-  const starterPrettierIgnorePath = resolve(ROOT, '.prettierignore')
-  const libPackagePrettierIgnorePath = resolve(PACKAGE_ROOT, '.prettierignore')
+function updateVSCodeDir() {
+  const libPackagePathDir = resolve(PACKAGE_ROOT, '.vscode')
 
-  copyFileSync(starterPrettierIgnorePath, libPackagePrettierIgnorePath)
+  const cpDirs = ['.vscode']
+  const cpItems = [...cpDirs.map((path) => `${join(ROOT, path)}/*`)]
 
-  log('==.prettierignore updated  ✅  ==\n')
+  sh.cp('-Rf', cpItems, `${libPackagePathDir}/`)
+
+  log(kleur.green('==.vscode updated  ✅  ==\n'))
+}
+
+function updatePrettier() {
+  const libPackagePath = PACKAGE_ROOT
+
+  const cpFiles = ['.prettierignore', '.prettierrc'].map((path) =>
+    join(ROOT, path)
+  )
+
+  sh.cp('-Rf', cpFiles, `${libPackagePath}/`)
+
+  log(kleur.green('==prettier config updated  ✅  ==\n'))
 }

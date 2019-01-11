@@ -115,7 +115,7 @@ function updatePackageJson() {
    */
   function removeScripts(scripts) {
     /** @type {string[]} */
-    const scriptsToRemove = ['size:umd', 'size:fesm']
+    const scriptsToRemove = ['size:umd', 'size:fesm', 'postinstall']
 
     scriptsToRemove.forEach((scriptName) => delete scripts[scriptName])
   }

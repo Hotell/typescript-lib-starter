@@ -237,7 +237,7 @@ function updateConfigDir() {
   const libConfigPathDir = resolve(PACKAGE_ROOT, 'config')
 
   /** @type {string[]} */
-  const cpFiles = []
+  const cpFiles = ['global.d.ts']
   /** @type {string[]} */
   const rmFiles = ['prettier.config.js']
 

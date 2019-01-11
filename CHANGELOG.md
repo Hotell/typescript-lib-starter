@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.1.0"></a>
+
+# [5.1.0](https://github.com/Hotell/typescript-lib-starter/compare/v5.0.0...v5.1.0) (2019-01-11)
+
+### Bug Fixes
+
+- **config:** copy global.d.ts on migrate ([555ef6a](https://github.com/Hotell/typescript-lib-starter/commit/555ef6a))
+- **scripts:** make migrate scripts work ([79ba6f3](https://github.com/Hotell/typescript-lib-starter/commit/79ba6f3))
+- **scripts:** remove postinstall npm script on migrate ([f9c73fa](https://github.com/Hotell/typescript-lib-starter/commit/f9c73fa))
+
+### Features
+
+- **scripts:** handle init termination ([#155](https://github.com/Hotell/typescript-lib-starter/issues/155)) ([614d7a8](https://github.com/Hotell/typescript-lib-starter/commit/614d7a8)), closes [#153](https://github.com/Hotell/typescript-lib-starter/issues/153)
+- constraint npm,yarn version ([358011e](https://github.com/Hotell/typescript-lib-starter/commit/358011e))
+- **scripts:** implement build script ([1791426](https://github.com/Hotell/typescript-lib-starter/commit/1791426))
+- **scripts:** implement file-size script ([#162](https://github.com/Hotell/typescript-lib-starter/issues/162)) ([6a8b68e](https://github.com/Hotell/typescript-lib-starter/commit/6a8b68e))
+
 <a name="5.0.0"></a>
 
 # [5.0.0](https://github.com/Hotell/typescript-lib-starter/compare/v4.1.0...v5.0.0) (2018-12-12)

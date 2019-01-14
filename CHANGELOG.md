@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.2.0"></a>
+
+# [5.2.0](https://github.com/Hotell/typescript-lib-starter/compare/v5.1.0...v5.2.0) (2019-01-14)
+
+### Bug Fixes
+
+- **npm-scripts:** run build script only in postrelease ([fbb8555](https://github.com/Hotell/typescript-lib-starter/commit/fbb8555))
+
+### Features
+
+- **scripts:** include rc files in migrate scripts ([2fef01b](https://github.com/Hotell/typescript-lib-starter/commit/2fef01b))
+
 <a name="5.1.0"></a>
 
 # [5.1.0](https://github.com/Hotell/typescript-lib-starter/compare/v5.0.0...v5.1.0) (2019-01-11)

@@ -41,6 +41,7 @@ function main() {
   updatePackageJson()
   updateTsConfig()
   updateTsLintConfig()
+  updateRcFiles()
   updatePrettier()
   updateConfigDir()
   updateScriptsDir()
@@ -296,4 +297,17 @@ function updatePrettier() {
   sh.cp('-Rf', cpFiles, `${libPackagePath}/`)
 
   log(kleur.green('==prettier config updated  ✅  ==\n'))
+}
+
+function updateRcFiles() {
+  const libPackagePath = PACKAGE_ROOT
+
+  const cpFiles = ['.travis.yml']
+
+  const cpItems = cpFiles.map((path) => join(ROOT, path))
+
+  sh.cp('-Rf', cpItems, `${libPackagePath}/`)
+
+  log(kleur.underline().white('== rc/config root files updated ✅ =='))
+  log(kleur.yellow('Copied: \n ' + cpItems.join('\n')))
 }

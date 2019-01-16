@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.3.0"></a>
+
+# [5.3.0](https://github.com/Hotell/typescript-lib-starter/compare/v5.2.0...v5.3.0) (2019-01-16)
+
+### Bug Fixes
+
+- **templates:** fix typo in README.md template([#170](https://github.com/Hotell/typescript-lib-starter/issues/170)) ([7607620](https://github.com/Hotell/typescript-lib-starter/commit/7607620))
+
+### Features
+
+- **vscode:** switch to ts-tslint-plugin in favour of tslint ([4a3e3cb](https://github.com/Hotell/typescript-lib-starter/commit/4a3e3cb))
+
 <a name="5.2.0"></a>
 
 # [5.2.0](https://github.com/Hotell/typescript-lib-starter/compare/v5.1.0...v5.2.0) (2019-01-14)

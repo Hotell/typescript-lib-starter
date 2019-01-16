@@ -56,11 +56,10 @@ This methods does foo bar moo...
 
 <details>
 <summary>How to do Foo</summary>
-
 Today we're gonna build Foo....
-</detail>
+</details>
 
-### 🕵️‍♀️ Troubleshooting
+### 🕵️ Troubleshooting
 
 ## 🥂 License
 

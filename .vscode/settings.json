@@ -1,7 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-  "tslint.autoFixOnSave": true,
-  "tslint.enable": true,
   "editor.formatOnSave": true,
   "typescript.format.enable": false,
   "javascript.format.enable": false,
@@ -11,4 +9,8 @@
   "editor.rulers": [
     80,100
   ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": {
+    "tslint*.json": "jsonc"
+  }
 }

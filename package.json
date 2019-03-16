@@ -114,7 +114,7 @@
     "shelljs": "0.8.3",
     "shx": "0.3.2",
     "sort-object-keys": "1.1.2",
-    "standard-version": "4.4.0",
+    "standard-version": "5.0.2",
     "ts-jest": "23.10.5",
     "tslib": "1.9.3",
     "tslint": "5.12.0",

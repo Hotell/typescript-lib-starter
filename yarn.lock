@@ -6385,14 +6385,15 @@ tslint-eslint-rules@^5.3.1:
     tslib "1.9.0"
     tsutils "^3.0.0"
 
-tslint-etc@1.2.12:
-  version "1.2.12"
-  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.2.12.tgz#f42895a9808a80ce3f2c21cbd2cd6c415630c699"
-  integrity sha512-3msQCFNSvfPN1TaowrF+JesUUPJOlbqmo8OhChQGL/H0GddppGSsbYYx6fsq+npGBYLY9OLCHMVQu324DR1axg==
+tslint-etc@1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/tslint-etc/-/tslint-etc-1.5.2.tgz#02b15c3633bf9a558e7ed6d1afd07c75f034d9de"
+  integrity sha512-GhroqSFTpA0+FUQf951cS4ld8nkD83JuNR8m3c4hIGkF2Jo1mJNADg/6iNK6MggsVCJxGNK5fVVNP3dzO8tShg==
   dependencies:
     "@phenomnomnominal/tsquery" "^3.0.0"
     tslib "^1.8.0"
     tsutils "^3.0.0"
+    tsutils-etc "^1.0.0"
 
 tslint-react@3.6.0:
   version "3.6.0"
@@ -6418,6 +6419,11 @@ tslint@5.12.0:
     semver "^5.3.0"
     tslib "^1.8.0"
     tsutils "^2.27.2"
+
+tsutils-etc@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/tsutils-etc/-/tsutils-etc-1.1.0.tgz#82ce1c92da29e07d3cde95692d5c5e8dbdc92fd0"
+  integrity sha512-pJlLtLmQPUyGHqY/Pq6EGnpGmQCnnTDZetQ7eWkeQ5xaw4GtfcR1Zt7HMKFHGDDp53HzQfbqQ+7ps6iJbfa9Hw==
 
 tsutils@^2.13.1, tsutils@^2.27.2:
   version "2.29.0"

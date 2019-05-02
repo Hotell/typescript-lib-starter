@@ -86,7 +86,7 @@
     "@types/json5": "0.0.30",
     "@types/node": "8.10.*",
     "@types/prettier": "1.15.2",
-    "@types/prompts": "1.2.0",
+    "@types/prompts": "2.4.0",
     "@types/webpack-config-utils": "2.3.0",
     "brotli-size": "0.0.3",
     "commitizen": "3.0.5",

@@ -4,6 +4,10 @@
 
 # TypeScript lib starter
 
+> **Enjoying/Using TypeScript lib starter ? 💪✅**
+>
+> <div align="center"><a href="https://paypal.me/martinhochel">Buy me a ☕️<br/><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate"></a></div>
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/Hotell/typescript-lib-starter.svg)](https://greenkeeper.io/)
 
 [![Build Status](https://travis-ci.org/Hotell/typescript-lib-starter.svg?branch=master)](https://travis-ci.org/Hotell/typescript-lib-starter)

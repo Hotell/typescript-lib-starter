@@ -6485,10 +6485,10 @@ typedoc@0.13.0:
     typedoc-default-themes "^0.5.0"
     typescript "3.1.x"
 
-typescript-tslint-plugin@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/typescript-tslint-plugin/-/typescript-tslint-plugin-0.2.1.tgz#6a0361cd311bdc9dcec2e70c8a54cab16829e47f"
-  integrity sha512-j0Tn/2GlAwnaklSNMOZRNpv96j6IWkQF6RuTJ5WowfNlgdYqnJpSaVFwT22INwJiPDDGKNe/aATT0qkU0pWM4w==
+typescript-tslint-plugin@0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/typescript-tslint-plugin/-/typescript-tslint-plugin-0.5.3.tgz#555d1d31c4a8504cdde60e616d1c41da1da7df4e"
+  integrity sha512-mL/11ve0XORmCVnOFsmgw1E/r6Ic/NBaat0ZtmTjLTYopo3noGnW00UJzl1Vf7zxe3YckLHH1irTckgAa+XRrA==
   dependencies:
     minimatch "^3.0.4"
     mock-require "^3.0.2"

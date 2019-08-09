@@ -88,7 +88,7 @@
     "@types/prettier": "1.15.2",
     "@types/prompts": "1.2.0",
     "@types/webpack-config-utils": "2.3.0",
-    "brotli-size": "0.0.3",
+    "brotli-size": "4.0.0",
     "commitizen": "3.0.5",
     "cross-var": "1.1.0",
     "cz-conventional-changelog": "2.1.0",

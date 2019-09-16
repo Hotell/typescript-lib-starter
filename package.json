@@ -80,7 +80,7 @@
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
-    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/config-conventional": "8.2.0",
     "@types/chokidar": "1.7.5",
     "@types/jest": "23.3.10",
     "@types/json5": "0.0.30",

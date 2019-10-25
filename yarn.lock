@@ -278,10 +278,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.15.2.tgz#91594ea7cb6f3b1f7ea69f32621246654c7cc231"
   integrity sha512-XIB0ZCaFZmWUHAa9dBqP5UKXXHwuukmVlP+XcyU94dui2k+l2lG+CHAbt2ffenHPUqoIs5Beh8Pdf2YEq/CZ7A==
 
-"@types/prompts@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-1.2.0.tgz#891e73f735ad5e82e8adae3a99424128e105fb62"
-  integrity sha512-7JXpT2rSd4hqd2oBWU1wfEW6x6gX+qPH+gLzGEx+My3wcb67K9Rc02xNQRVn67phusmXm5Yqn4oTP2OW1G5zdQ==
+"@types/prompts@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/prompts/-/prompts-2.0.2.tgz#ff214681f9b20bd9678a3e4ef0785315881f0de1"
+  integrity sha512-Jx+tWZ2UORJT0cZZ0hT0MuQR8qDVc34sRLz225XpdZzC5EH8+uLNqXn/i920GSvONHlbzWcmLZteLYBbpWAQ+w==
 
 "@types/shelljs@^0.8.0":
   version "0.8.1"

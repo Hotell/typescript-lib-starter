@@ -102,7 +102,7 @@
     "prettier": "1.15.3",
     "pretty-bytes": "5.1.0",
     "prompts": "2.0.0",
-    "replace-in-file": "3.4.2",
+    "replace-in-file": "5.0.2",
     "rollup": "0.68.2",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-json": "3.1.0",

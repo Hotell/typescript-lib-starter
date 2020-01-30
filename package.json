@@ -84,7 +84,7 @@
     "@types/chokidar": "1.7.5",
     "@types/jest": "23.3.10",
     "@types/json5": "0.0.30",
-    "@types/node": "8.10.*",
+    "@types/node": "~13.5.3",
     "@types/prettier": "1.15.2",
     "@types/prompts": "1.2.0",
     "@types/webpack-config-utils": "2.3.0",

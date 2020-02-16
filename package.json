@@ -122,7 +122,7 @@
     "tslint-config-standard": "8.0.1",
     "tslint-etc": "1.2.12",
     "tslint-react": "3.6.0",
-    "typedoc": "0.13.0",
+    "typedoc": "0.16.10",
     "typescript": "3.2.2",
     "typescript-tslint-plugin": "0.2.1",
     "webpack-config-utils": "2.3.1"

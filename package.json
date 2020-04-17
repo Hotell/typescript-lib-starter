@@ -115,7 +115,7 @@
     "shx": "0.3.2",
     "sort-object-keys": "1.1.2",
     "standard-version": "4.4.0",
-    "ts-jest": "23.10.5",
+    "ts-jest": "25.4.0",
     "tslib": "1.9.3",
     "tslint": "5.12.0",
     "tslint-config-prettier": "1.17.0",

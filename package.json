@@ -98,7 +98,7 @@
     "jest-watch-typeahead": "0.2.0",
     "json5": "2.1.0",
     "kleur": "3.0.1",
-    "lint-staged": "8.1.0",
+    "lint-staged": "10.1.7",
     "prettier": "1.15.3",
     "pretty-bytes": "5.1.0",
     "prompts": "2.0.0",

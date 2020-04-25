@@ -111,7 +111,7 @@
     "rollup-plugin-sourcemaps": "0.4.2",
     "rollup-plugin-terser": "3.0.0",
     "rollup-plugin-uglify": "6.0.0",
-    "shelljs": "0.8.3",
+    "shelljs": "0.8.4",
     "shx": "0.3.2",
     "sort-object-keys": "1.1.2",
     "standard-version": "4.4.0",
